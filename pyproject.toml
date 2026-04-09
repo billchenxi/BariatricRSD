@@ -1,0 +1,83 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bariatric-rsd"
+version = "0.1.0"
+description = "Multi-task Transformer for joint RSD prediction, deviation detection, and operation logging in surgical videos"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Bill Chen", email = "billchenxi@gmail.com"},
+]
+keywords = [
+    "surgical-ai",
+    "remaining-surgery-duration",
+    "deviation-detection",
+    "temporal-attention",
+    "multi-task-learning",
+    "surgical-video-analysis",
+    "bariatric-surgery",
+    "operation-logging",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+
+dependencies = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "timm>=0.9.0",
+    "einops>=0.7.0",
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "scipy>=1.10.0",
+    "scikit-learn>=1.2.0",
+    "matplotlib>=3.7.0",
+    "Pillow>=9.5.0",
+    "tqdm>=4.65.0",
+]
+
+[project.optional-dependencies]
+wandb = ["wandb>=0.15.0"]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.1.0",
+    "pre-commit>=3.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/billchenxi/BariatricRSD"
+Repository = "https://github.com/billchenxi/BariatricRSD"
+Issues = "https://github.com/billchenxi/BariatricRSD/issues"
+
+[project.scripts]
+bariatric-train = "bariatric_rsd.train:main"
+bariatric-train-cholec80 = "bariatric_rsd.train_cholec80:main"
+bariatric-eval = "bariatric_rsd.evaluate:main"
+bariatric-infer = "bariatric_rsd.inference.run_inference:run_inference"
+
+[tool.setuptools.packages.find]
+include = ["bariatric_rsd*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"

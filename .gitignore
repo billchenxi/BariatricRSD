@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+eggs/
+*.egg
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ML artifacts
+experiments/
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+wandb/
+runs/
+logs/
+
+# Data (too large for git)
+data/
+frames/
+videos/
+*.mp4
+*.avi
+*.mkv
+
+# Reports and outputs
+reports/
+results/
+*.docx
+*.pdf
+
+# System
+Thumbs.db
+.DS_Store
+
+# Environment files
+.env
+*.env.local
