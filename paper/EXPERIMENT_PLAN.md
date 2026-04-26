@@ -139,6 +139,8 @@ This is the execution order that best improves publication odds.
 
 ### Phase D — Paper-strengthening analyses
 
+See also [FIGURE_ROADMAP.md](/Users/bill/Documents/GitHub/bariatric_rsd/paper/FIGURE_ROADMAP.md:1) for the exact figure outputs these analyses are meant to produce.
+
 9. **Time-of-surgery curves**
 10. **Diagnostic chain**
 11. **Shuffled-token control**
