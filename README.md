@@ -9,13 +9,46 @@
 BariatricRSD is an end-to-end Transformer framework for surgical video analysis that jointly performs three tasks from a single model: remaining surgery duration (RSD) prediction, intraoperative deviation detection, and surgical phase recognition. It also includes an automated operation log generator for real-time surgical documentation.
 
 > **Paper:** *BariatricRSD: Joint Remaining Surgery Duration Prediction and Intraoperative Deviation Detection via Multi-Task Hierarchical Temporal Attention with Phase-Order Conditioning*
-> Submitted to NeurIPS 2026.
+> Submitted to NeurIPS 2026 Datasets & Benchmarks (#706).
+
+---
+
+## Repository status (2026-08-10)
+
+> **Planning:** all forward-looking strategy — direction, data, venues,
+> funding, and the commercialization path — is consolidated in
+> [`docs/STRATEGY.md`](docs/STRATEGY.md) (2026-09-17). It also records
+> open conflicts, including Paper 1's acceptance status below.
+
+| Track | State |
+|---|---|
+| **Paper 1** — NeurIPS 2026 E&D #706 | Submitted; awaiting notification (Sept 2026). Reviewer responses drafted in [`docs/paper1_neurips2026/REBUTTAL_FILING_READY.md`](docs/paper1_neurips2026/REBUTTAL_FILING_READY.md). Log: [`SESSION_LOG.md`](docs/paper1_neurips2026/SESSION_LOG.md) *(closed)* |
+| **Paper 2A** — foundation-model causal benchmark | **Phase 0**: CPU-side infrastructure complete, hardware/access items blocked. See [`PHASE_0_REPORT.md`](docs/paper2_planning/phase_0/PHASE_0_REPORT.md) and [`SESSION_LOG.md`](docs/paper2_planning/SESSION_LOG.md) *(active)* |
+| **Compute** | No GPU instance running. Lambda filesystem decommissioned June 2026. |
+
+> ⚠️ **Datasets are not present in this checkout.** The raw MB140 and
+> Cholec80 frames lived on the decommissioned Lambda filesystem and must
+> be re-acquired before any feature extraction (Cholec80 requires a fresh
+> CAMMA data-use agreement). `lambda_mirror/` retains outputs, logs and
+> labels — enough to reproduce reported *numbers*, not to retrain.
+
+Two Phase 0 findings materially affect how results in this repository
+should be read:
+
+- **[Fold-variance dominance](docs/paper2_planning/phase_0/PHASE_0_FINDING_FOLD_VARIANCE.md)** —
+  on MB140, 98% of the paired conditioning effect's variance is
+  between-fold and 2% between-seed. Effects below ~0.5 min are not
+  resolvable on a 5-fold split at any seed count.
+- **[Workflow-representation non-identifiability](docs/paper2_planning/phase_0/PHASE_0_FINDING_REPRESENTATION.md)** —
+  the k-means phase-order cluster id is unstable to the random seed alone
+  (ARI 0.63 on MB140) and is not recovered by an independent
+  representation family (ARI 0.03–0.08).
 
 ---
 
 ## Key Features
 
-- **Phase-Order Conditioning Token** — A learnable embedding that encodes the surgeon's procedural style (one of 8 empirically-identified RYGB phase orderings), prepended to the Transformer temporal sequence.
+- **Phase-Order Conditioning Token** — A learnable embedding that encodes the surgeon's procedural style (a k-means cluster over phase-transition bigrams, K=6 in the reported runs), prepended to the Transformer temporal sequence. *See the non-identifiability caveat above: this cluster id is seed-unstable on MB140, and Paper 2A moves to a continuous workflow vector.*
 - **Hierarchical Temporal Attention (HTA)** — Multi-scale temporal attention at local, medium, and global scales, adapted from Surgformer (MICCAI 2024).
 - **Multi-Task Learning** — Joint RSD regression + deviation detection + phase recognition with shared representations.
 - **Automated Operation Logging** — Real-time generation of structured surgical reports from model predictions.
@@ -183,6 +216,33 @@ bariatric_rsd/
   scripts/
     setup_lambda.sh          # Lambda Cloud GPU setup
     extract_cholec80_frames.sh  # Cholec80 frame extraction
+
+brsd_lib/                    # Paper 1 analysis library (CPU-only)
+  causal_cluster.py          # Prefix-only workflow cluster assignment
+  evaluate.py                # Checkpoint evaluation
+  stats.py                   # Bootstrap CIs, paired Wilcoxon
+  smoothing.py, ensemble.py, overfit_filter.py
+
+paper2_infra/                # Paper 2A infrastructure (CPU-only, 131 tests)
+  backbone_features/
+    extract.py               # Frozen-backbone feature extraction + registry
+  evaluation/
+    evaluate_phase_anticipation.py  # Strict prefix-only Task A/B evaluator
+    fold_stability.py        # Variance decomposition + fold-vs-seed budgeting
+  workflow_representations/
+    hmm.py                   # R3 latent-state representation (causal + oracle)
+    compare.py               # Cross-family ARI, variability, seed stability
+    duration_aware_kmeans.py # R1d duration-aware diagnostic
+
+docs/
+  paper1_neurips2026/        # Submission, rebuttal, audits, closed log
+  paper2_planning/           # Plan, brief, active log, phase_0/ findings
+  runbooks/                  # Lambda deploy / HF upload / shutdown
+
+labels/                      # Per-video phase label + cluster artifacts
+reproducibility/             # Cited checkpoints, manifest, verify scripts
+lambda_mirror/               # Archived run outputs and logs (45 GB, gitignored)
+tests/                       # pytest suites
 ```
 
 ## Training Configuration
@@ -205,20 +265,46 @@ bariatric_rsd/
 
 ### Datasets
 
-| Dataset | Videos | Procedure | Annotations |
-|---------|--------|-----------|-------------|
-| [Cholec80](http://camma.u-strasbg.fr/datasets) | 80 | Cholecystectomy | Phase (7 classes) |
-| [MultiBypass140](https://github.com/CAMMA-public/MultiBypass140) | 140 | RYGB | Phase + Deviation |
+| Dataset | Videos | Procedure | Annotations | Distinct phase orders |
+|---------|--------|-----------|-------------|----------------------:|
+| [Cholec80](http://camma.u-strasbg.fr/datasets) | 80 (72 phase-labeled) | Cholecystectomy | Phase (7 classes) | 6 |
+| [MultiBypass140](https://github.com/CAMMA-public/MultiBypass140) | 140 (70 Bern + 70 Strasbourg) | RYGB | Phase (14 classes) + Deviation | 104 |
 
-### Target Performance
+The last column is the workflow-heterogeneity gap the papers turn on, and
+it is also why the two benchmarks behave so differently under categorical
+workflow conditioning — see the non-identifiability finding linked above.
 
-| Task | Dataset | Metric | Current SOTA | Our Target |
-|------|---------|--------|--------------|------------|
-| RSD | Cholec80 | MAE (min) | 7.1 (TransLocal) | 6.5-7.0 |
-| Deviation | MultiBypass140 | F1 | 0.76 (BetaMixer) | 0.72-0.80 |
-| Phase | Cholec80 | Accuracy | ~92% | 90%+ |
+### Results — MB140 RSD under the strict prefix-only protocol
 
-*Results will be updated as experiments complete.*
+Five folds × three seeds, mean val MAE in minutes. Reproduce the analysis
+with `python -m paper2_infra.evaluation.fold_stability --summary-json
+paper/phase_e_summary.json --baseline no_token --treatment decoupled`.
+
+| Fold | No token | Oracle | Decoupled | Δ decoupled |
+|---|---:|---:|---:|---:|
+| 0 *(development split)* | 13.03 ± 0.18 | 12.26 ± 0.09 | 12.18 ± 0.14 | **−0.85** |
+| 1 | 11.29 ± 0.13 | 11.32 ± 0.29 | 11.07 ± 0.13 | −0.23 |
+| 2 | 11.60 ± 0.19 | 11.62 ± 0.26 | 11.84 ± 0.14 | +0.23 |
+| 3 | 10.27 ± 0.07 | 10.32 ± 0.11 | 10.39 ± 0.13 | +0.13 |
+| 4 | 8.90 ± 0.22 | 8.67 ± 0.13 | 8.68 ± 0.18 | −0.22 |
+| **5-fold mean** | **11.02 ± 1.44** | **10.84 ± 1.30** | **10.83 ± 1.29** | **−0.19** |
+
+**Read this honestly:** the effect improves 3 of 5 folds and reverses on 2.
+The five-fold mean (−0.19 min) is the appropriate summary; fold 0's
+−0.85 min is a development-split result sitting 1.6 SE from that mean.
+Neither paired test reaches significance (p = 0.15 over 15 matched runs;
+p = 0.63 over 5 fold means). Between-fold spread is 7.7× the effect.
+
+All ± values are sample standard deviation (ddof=1) across the 3 seeds,
+matching [`paper/phase_e_summary.json`](paper/phase_e_summary.json).
+*Note: the submitted manuscript quotes `12.18 ± 0.11` for fold-0
+decoupled, which is the population std (ddof=0) while its `13.03 ± 0.18`
+is the sample std — mixed conventions in one comparison. Appendix C's
+`13.03 ± 0.13` matches neither. Flagged for camera-ready; no conclusion
+changes.*
+
+Full run inventory: [`paper/results_manifest.csv`](paper/results_manifest.csv).
+Aggregate: [`paper/phase_e_summary.md`](paper/phase_e_summary.md).
 
 ## Citation
 
