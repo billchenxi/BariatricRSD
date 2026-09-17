@@ -1,5 +1,10 @@
 # Phase 0 Finding — "Workflow cluster" is not an identified construct: two representation families agree on how much variability exists but not on which videos share a workflow
 
+> **Note (2026-09-17):** references below to `NEXT_PAPER_PLAN.md`,
+> `NEXT_PAPER_BRIEF.md`, or `PAPER_2A_REVIEWER_HARDENING.md` now resolve to
+> [`docs/STRATEGY.md`](../../STRATEGY.md), which merged them. Originals are at
+> git commit `58c99bc`.
+
 *Status: analysis complete, reproducible from committed artifacts.
 Produced by `paper2_infra/workflow_representations/{hmm,compare}.py` on
 the committed MB140 fold-0 and Cholec80 label JSONs. Tests in

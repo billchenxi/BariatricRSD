@@ -1,5 +1,10 @@
 # Phase 0 Kickoff Checklist
 
+> **Note (2026-09-17):** references below to `NEXT_PAPER_PLAN.md`,
+> `NEXT_PAPER_BRIEF.md`, or `PAPER_2A_REVIEWER_HARDENING.md` now resolve to
+> [`docs/STRATEGY.md`](../../STRATEGY.md), which merged them. Originals are at
+> git commit `58c99bc`.
+
 *Paper 2A infrastructure work. Target duration: ~4 weeks. Compute budget:
 $250 (per `NEXT_PAPER_PLAN.md` §Phase 0). Extended with hardening items
 from `PAPER_2A_REVIEWER_HARDENING.md`.*

@@ -14,7 +14,7 @@
 | Primary venue | MICCAI 2027 (Feb/Mar 2027 submission) | NeurIPS 2027 (May 2027) |
 | Current phase | **Phase 0 — CPU side complete, hardware side blocked** | Not started (Phase 3) |
 
-Plan: [`NEXT_PAPER_PLAN.md`](NEXT_PAPER_PLAN.md) · Brief: [`NEXT_PAPER_BRIEF.md`](NEXT_PAPER_BRIEF.md)
+Plan and brief consolidated into [`STRATEGY.md`](../STRATEGY.md) on 2026-09-17.
 Phase 0 wrap-up: [`phase_0/PHASE_0_REPORT.md`](phase_0/PHASE_0_REPORT.md)
 
 ---
@@ -170,7 +170,7 @@ Its *signal* does not:
 
 #### E. Phase 1 redesigned
 
-Updated [`NEXT_PAPER_PLAN.md`](NEXT_PAPER_PLAN.md) §Phase 1:
+Updated `NEXT_PAPER_PLAN.md` (now [`STRATEGY.md`](../STRATEGY.md)) §Phase 1:
 
 - MB140 sampling: fold-0 × 2 seeds → **5 folds × 1 seed**
 - Conditions: 2 → **3** (`no-token`, `decoupled-R1`, `decoupled-R3`)
@@ -276,6 +276,6 @@ No user input needed for any of these:
    accepted rather than being written under camera-ready time pressure.
 3. Write the R2 learned-embedding code so it's ready to train the moment
    a GPU exists.
-4. Fold both findings into [`NEXT_PAPER_BRIEF.md`](NEXT_PAPER_BRIEF.md) as
+4. Fold both findings into `NEXT_PAPER_BRIEF.md` (now [`STRATEGY.md`](../STRATEGY.md)) as
    Paper 2A evaluation contributions.
 5. Commit the Phase 0 work (nothing is committed yet).

@@ -1,5 +1,10 @@
 # Phase 0 Finding — MB140 is fold-variance-dominated, and the planned Phase 1 design cannot detect its own decision gate
 
+> **Note (2026-09-17):** references below to `NEXT_PAPER_PLAN.md`,
+> `NEXT_PAPER_BRIEF.md`, or `PAPER_2A_REVIEWER_HARDENING.md` now resolve to
+> [`docs/STRATEGY.md`](../../STRATEGY.md), which merged them. Originals are at
+> git commit `58c99bc`.
+
 *Status: analysis complete, reproducible from committed artifacts.
 Produced by `paper2_infra/evaluation/fold_stability.py` on
 `paper/phase_e_summary.json` (Paper 1's five-fold × three-seed strict
