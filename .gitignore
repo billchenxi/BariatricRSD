@@ -36,9 +36,10 @@ checkpoints/
 wandb/
 runs/
 logs/
+lambda_mirror/
 
 # Data (too large for git)
-data/
+/data/
 frames/
 videos/
 *.mp4
@@ -51,6 +52,11 @@ results/
 *.docx
 *.pdf
 
+# Nested paper-only repositories (they carry their own .git)
+papers/paper1_neurips2026/manuscript/final_draft/
+papers/paper1_neurips2026/manuscript/final_draft_backup_*/
+paper/final_draft_backup_*/
+
 # System
 Thumbs.db
 .DS_Store
@@ -58,3 +64,15 @@ Thumbs.db
 # Environment files
 .env
 *.env.local
+
+# Secrets / credentials — NEVER commit (added 2026-06-04)
+*.pem
+rsd.pem
+*.key
+*.pem.txt
+us-east-3-*.txt
+*credential*
+*secret*
+
+# Archived/superseded trees — kept on disk, deliberately untracked
+/archive/

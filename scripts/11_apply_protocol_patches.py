@@ -13,7 +13,7 @@ This script is intentionally idempotent. It patches three files in place:
    - adds `--seed`, `--target_position`, `--decouple_phase_head`,
      and `--no_phase_order`
 
-The repository also carries the same functionality in `lambda_setup/src/*`.
+The repository also carries the same functionality in `scripts/lambda_setup/src/*`.
 This helper exists because the queued Lambda scripts invoke `python3
 scripts/11_apply_protocol_patches.py` from the remote checkout.
 """
