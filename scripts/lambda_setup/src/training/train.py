@@ -53,8 +53,13 @@ def compute_rsd_metrics(
     rsd_pred_sec = rsd_pred_norm * rsd_true_sec / (rsd_true_norm + 1e-8)  # approx
     mae_sec = np.mean(np.abs(rsd_pred_sec - rsd_true_sec))
 
-    pr = pearsonr(rsd_pred_norm, rsd_true_norm).statistic if len(rsd_pred_norm) > 2 else 0.0
-    sr = spearmanr(rsd_pred_norm, rsd_true_norm).statistic if len(rsd_pred_norm) > 2 else 0.0
+    # scipy 1.8.0 (deployed on Lambda) returns a tuple; scipy >= 1.9 returns
+    # a NamedTuple with .statistic. Use index [0] for cross-version
+    # compatibility; this fix was lost during the in-source patch landing
+    # of --target_position / --decouple_phase_head and caused Run 033 / 034
+    # / 026 fold4 / 027 fold3+4 to all fail at the first val checkpoint.
+    pr = pearsonr(rsd_pred_norm, rsd_true_norm)[0] if len(rsd_pred_norm) > 2 else 0.0
+    sr = spearmanr(rsd_pred_norm, rsd_true_norm)[0] if len(rsd_pred_norm) > 2 else 0.0
 
     return {
         "mae_normalized": float(mae_norm),

@@ -17,13 +17,13 @@ BariatricRSD is an end-to-end Transformer framework for surgical video analysis 
 
 > **Planning:** all forward-looking strategy — direction, data, venues,
 > funding, and the commercialization path — is consolidated in
-> [`docs/STRATEGY.md`](docs/STRATEGY.md) (2026-09-17). It also records
+> [`docs/STRATEGY.md`](plans/STRATEGY.md) (2026-09-17). It also records
 > open conflicts, including Paper 1's acceptance status below.
 
 | Track | State |
 |---|---|
-| **Paper 1** — NeurIPS 2026 E&D #706 | Submitted; awaiting notification (Sept 2026). Reviewer responses drafted in [`docs/paper1_neurips2026/REBUTTAL_FILING_READY.md`](docs/paper1_neurips2026/REBUTTAL_FILING_READY.md). Log: [`SESSION_LOG.md`](docs/paper1_neurips2026/SESSION_LOG.md) *(closed)* |
-| **Paper 2A** — foundation-model causal benchmark | **Phase 0**: CPU-side infrastructure complete, hardware/access items blocked. See [`PHASE_0_REPORT.md`](docs/paper2_planning/phase_0/PHASE_0_REPORT.md) and [`SESSION_LOG.md`](docs/paper2_planning/SESSION_LOG.md) *(active)* |
+| **Paper 1** — NeurIPS 2026 E&D #706 | Submitted; awaiting notification (Sept 2026). Reviewer responses drafted in [`docs/paper1_neurips2026/REBUTTAL_FILING_READY.md`](papers/paper1_neurips2026/notes/REBUTTAL_FILING_READY.md). Log: [`SESSION_LOG.md`](papers/paper1_neurips2026/notes/SESSION_LOG.md) *(closed)* |
+| **Paper 2A** — foundation-model causal benchmark | **Phase 0**: CPU-side infrastructure complete, hardware/access items blocked. See [`PHASE_0_REPORT.md`](papers/paper2_forecasting/phase_0/PHASE_0_REPORT.md) and [`SESSION_LOG.md`](papers/paper2_forecasting/SESSION_LOG.md) *(active)* |
 | **Compute** | No GPU instance running. Lambda filesystem decommissioned June 2026. |
 
 > ⚠️ **Datasets are not present in this checkout.** The raw MB140 and
@@ -35,11 +35,11 @@ BariatricRSD is an end-to-end Transformer framework for surgical video analysis 
 Two Phase 0 findings materially affect how results in this repository
 should be read:
 
-- **[Fold-variance dominance](docs/paper2_planning/phase_0/PHASE_0_FINDING_FOLD_VARIANCE.md)** —
+- **[Fold-variance dominance](papers/paper2_forecasting/phase_0/PHASE_0_FINDING_FOLD_VARIANCE.md)** —
   on MB140, 98% of the paired conditioning effect's variance is
   between-fold and 2% between-seed. Effects below ~0.5 min are not
   resolvable on a 5-fold split at any seed count.
-- **[Workflow-representation non-identifiability](docs/paper2_planning/phase_0/PHASE_0_FINDING_REPRESENTATION.md)** —
+- **[Workflow-representation non-identifiability](papers/paper2_forecasting/phase_0/PHASE_0_FINDING_REPRESENTATION.md)** —
   the k-means phase-order cluster id is unstable to the random seed alone
   (ARI 0.63 on MB140) and is not recovered by an independent
   representation family (ARI 0.03–0.08).
@@ -193,57 +193,61 @@ This produces a structured operative report:
 
 ## Project Structure
 
+Code, documentation, plans, and per-paper material are kept separate.
+
 ```
-bariatric_rsd/
-  config.py                  # Dataclass-based configuration
-  train.py                   # Training entry point (bariatric data)
-  train_cholec80.py          # Training entry point (Cholec80)
-  evaluate.py                # Evaluation entry point
-  data/
-    annotation_parser.py     # JSON/TXT/CSV annotation parsing
-    surgical_dataset.py      # Frame-level and clip-level datasets
-  models/
-    visual_encoder.py        # timm-based encoder with HecVL support
-    temporal_model.py        # HTA with multi-scale attention
-    bariatric_rsd.py         # Full model + multi-task loss
-  training/
-    trainer.py               # Training loop with AMP, early stopping
-  evaluation/
-    metrics.py               # RSD, deviation, phase metrics
-  inference/
-    operation_log.py         # Automated surgical operation logger
-    run_inference.py         # End-to-end inference pipeline
-  scripts/
-    setup_lambda.sh          # Lambda Cloud GPU setup
-    extract_cholec80_frames.sh  # Cholec80 frame extraction
+src/                             # ALL code (importable, src-layout)
+  bariatric_rsd/                 # Core model + training package
+    config.py                    # Dataclass-based configuration
+    train.py                     # Training entry point (bariatric data)
+    train_cholec80.py            # Training entry point (Cholec80)
+    evaluate.py                  # Evaluation entry point
+    data/       annotation_parser.py, surgical_dataset.py
+    models/     visual_encoder.py, temporal_model.py, bariatric_rsd.py
+    training/   trainer.py        # Training loop with AMP, early stopping
+    evaluation/ metrics.py        # RSD, deviation, phase metrics
+    inference/  operation_log.py, run_inference.py
+  brsd_lib/                      # Paper 1 analysis library (CPU-only)
+    causal_cluster.py            # Prefix-only workflow cluster assignment
+    evaluate.py, stats.py, smoothing.py, ensemble.py, overfit_filter.py
+  paper2_infra/                  # Paper 2 infrastructure (CPU-only)
+    backbone_features/extract.py            # Frozen-backbone extraction + registry
+    evaluation/evaluate_phase_anticipation.py  # Strict prefix-only Task A/B
+    evaluation/fold_stability.py            # Variance decomposition + budgeting
+    workflow_representations/    hmm.py, compare.py, duration_aware_kmeans.py
 
-brsd_lib/                    # Paper 1 analysis library (CPU-only)
-  causal_cluster.py          # Prefix-only workflow cluster assignment
-  evaluate.py                # Checkpoint evaluation
-  stats.py                   # Bootstrap CIs, paired Wilcoxon
-  smoothing.py, ensemble.py, overfit_filter.py
+tests/                           # pytest suites (146 passing)
+scripts/                         # Operational + experiment scripts
+  lambda_setup/                  # Lambda Cloud provisioning bundle
+  paper1_runs/                   # run0NN_*.sh experiment drivers for Paper 1
+  extract_cholec80_frames.sh, sync_from_lambda.sh, h100_bootstrap.sh
 
-paper2_infra/                # Paper 2A infrastructure (CPU-only, 131 tests)
-  backbone_features/
-    extract.py               # Frozen-backbone feature extraction + registry
-  evaluation/
-    evaluate_phase_anticipation.py  # Strict prefix-only Task A/B evaluator
-    fold_stability.py        # Variance decomposition + fold-vs-seed budgeting
-  workflow_representations/
-    hmm.py                   # R3 latent-state representation (causal + oracle)
-    compare.py               # Cross-family ARI, variability, seed stability
-    duration_aware_kmeans.py # R1d duration-aware diagnostic
+plans/                           # Forward-looking strategy
+  STRATEGY.md                    # Single authoritative planning document
+  grants/                        # Resource-access applications
+  archive/                       # Superseded plans
 
-docs/
-  paper1_neurips2026/        # Submission, rebuttal, audits, closed log
-  paper2_planning/           # Plan, brief, active log, phase_0/ findings
-  runbooks/                  # Lambda deploy / HF upload / shutdown
+docs/                            # Reference documentation
+  runbooks/                      # Lambda deploy / HF upload / shutdown / setup
 
-labels/                      # Per-video phase label + cluster artifacts
-reproducibility/             # Cited checkpoints, manifest, verify scripts
-lambda_mirror/               # Archived run outputs and logs (45 GB, gitignored)
-tests/                       # pytest suites
+papers/                          # One directory per paper
+  paper1_neurips2026/            # "When Does Workflow Conditioning Help RSD?"
+    manuscript/                  # Drafts, figures, slides, poster, exports
+    notes/                       # Findings, audits, rebuttal, closed log
+    reproducibility/             # Cited checkpoints, manifest, verify scripts
+  paper2_forecasting/            # Stable workflow representations (active)
+    phase_0/                     # Feasibility findings and backbone matrix
+    SESSION_LOG.md               # Active development log
+
+labels/                          # Per-video phase label + cluster artifacts
+lambda_mirror/                   # Archived run outputs and logs (gitignored)
+notebooks/                       # Exploratory analysis
+archive/                         # Superseded trees, kept on disk, untracked
 ```
+
+**Adding a paper.** Create `papers/paperN_<topic>/` with the same shape —
+`manuscript/`, `notes/`, and whatever artifacts it needs. Shared code belongs in
+`src/`; anything paper-specific stays under that paper's directory.
 
 ## Training Configuration
 
@@ -296,15 +300,15 @@ Neither paired test reaches significance (p = 0.15 over 15 matched runs;
 p = 0.63 over 5 fold means). Between-fold spread is 7.7× the effect.
 
 All ± values are sample standard deviation (ddof=1) across the 3 seeds,
-matching [`paper/phase_e_summary.json`](paper/phase_e_summary.json).
+matching [`paper/phase_e_summary.json`](papers/paper1_neurips2026/manuscript/phase_e_summary.json).
 *Note: the submitted manuscript quotes `12.18 ± 0.11` for fold-0
 decoupled, which is the population std (ddof=0) while its `13.03 ± 0.18`
 is the sample std — mixed conventions in one comparison. Appendix C's
 `13.03 ± 0.13` matches neither. Flagged for camera-ready; no conclusion
 changes.*
 
-Full run inventory: [`paper/results_manifest.csv`](paper/results_manifest.csv).
-Aggregate: [`paper/phase_e_summary.md`](paper/phase_e_summary.md).
+Full run inventory: [`paper/results_manifest.csv`](papers/paper1_neurips2026/manuscript/results_manifest.csv).
+Aggregate: [`paper/phase_e_summary.md`](papers/paper1_neurips2026/manuscript/phase_e_summary.md).
 
 ## Citation
 

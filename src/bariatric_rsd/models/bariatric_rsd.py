@@ -297,18 +297,20 @@ class MultiTaskLoss(nn.Module):
             Tuple of (total_loss, loss_dict) where loss_dict contains
             individual task losses for logging.
         """
-        # RSD regression loss
+        # RSD regression loss. The dataset currently provides a single
+        # supervision target per clip, corresponding to the last frame.
+        # If frame-wise targets are later provided, use them as-is.
         rsd_pred = predictions["rsd"].squeeze(-1)
         rsd_target = targets["rsd"]
-        if rsd_pred.dim() > rsd_target.dim():
-            rsd_target = rsd_target.unsqueeze(-1).expand_as(rsd_pred)
+        if rsd_pred.dim() == 2 and rsd_target.dim() == 1:
+            rsd_pred = rsd_pred[:, -1]
         loss_rsd = self.rsd_criterion(rsd_pred, rsd_target)
 
-        # Deviation detection loss
+        # Deviation detection loss: mirror the clip-vs-frame handling above.
         dev_pred = predictions["deviation"].squeeze(-1)
         dev_target = targets["deviation"]
-        if dev_pred.dim() > dev_target.dim():
-            dev_target = dev_target.unsqueeze(-1).expand_as(dev_pred)
+        if dev_pred.dim() == 2 and dev_target.dim() == 1:
+            dev_pred = dev_pred[:, -1]
         # Move pos_weight to the right device
         self.deviation_criterion.pos_weight = (
             self.deviation_criterion.pos_weight.to(dev_pred.device)
@@ -318,7 +320,9 @@ class MultiTaskLoss(nn.Module):
         # Phase recognition loss
         phase_pred = predictions["phase"]
         phase_target = targets["phase"]
-        if phase_pred.dim() == 3:
+        if phase_pred.dim() == 3 and phase_target.dim() == 1:
+            phase_pred = phase_pred[:, -1, :]
+        elif phase_pred.dim() == 3 and phase_target.dim() == 2:
             # (B, T, num_phases) -> (B*T, num_phases)
             B, T, C = phase_pred.shape
             phase_pred = phase_pred.reshape(B * T, C)

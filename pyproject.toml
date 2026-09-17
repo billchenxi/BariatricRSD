@@ -68,8 +68,24 @@ bariatric-train-cholec80 = "bariatric_rsd.train_cholec80:main"
 bariatric-eval = "bariatric_rsd.evaluate:main"
 bariatric-infer = "bariatric_rsd.inference.run_inference:run_inference"
 
-[tool.setuptools.packages.find]
-include = ["bariatric_rsd*"]
+[tool.setuptools]
+packages = [
+    "bariatric_rsd",
+    "bariatric_rsd.data",
+    "bariatric_rsd.models",
+    "bariatric_rsd.training",
+    "bariatric_rsd.evaluation",
+    "bariatric_rsd.inference",
+    "bariatric_rsd.utils",
+    "brsd_lib",
+    "paper2_infra",
+    "paper2_infra.backbone_features",
+    "paper2_infra.evaluation",
+    "paper2_infra.workflow_representations",
+]
+
+[tool.setuptools.package-dir]
+"" = "src"
 
 [tool.ruff]
 line-length = 100
@@ -80,4 +96,8 @@ select = ["E", "F", "I", "W"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src"]
 addopts = "-v --tb=short"
+markers = [
+    "slow: tests that download model weights or run long fits",
+]

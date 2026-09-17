@@ -5,7 +5,7 @@ Compatibility entrypoint for the strict-protocol patch helper.
 The authoritative implementation lives at repo-root:
   `scripts/11_apply_protocol_patches.py`
 
-This wrapper keeps older references under `lambda_setup/scripts/` working while
+This wrapper keeps older references under `scripts/lambda_setup/scripts/` working while
 ensuring there is only one patch implementation to maintain.
 """
 from __future__ import annotations

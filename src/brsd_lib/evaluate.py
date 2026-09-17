@@ -28,12 +28,30 @@ import torch
 # ---------------------------------------------------------------------------
 
 def _import_project(project_src: str):
-    """Add the project src/ dir to sys.path and return the relevant imports."""
-    if project_src not in sys.path:
-        sys.path.insert(0, project_src)
-    from models.bariatric_rsd import BariatricRSD            # type: ignore
-    from data.dataset import BariatricFrameDataset           # type: ignore
-    from torch.utils.data import DataLoader                   # type: ignore
+    """Load BariatricRSD + BariatricFrameDataset by explicit file path.
+
+    Bypasses any conflicting ``data/`` package elsewhere on sys.path. There
+    is a vendor ``data/`` package at the repo root that shadows ``src/data/``
+    when cwd is the repo root, so we dodge it via importlib.util loading.
+    Same pattern as ``brsd_lib.compute_residuals._import_project``.
+    """
+    import importlib.util
+    src_dir = Path(project_src)
+
+    def _load(modname: str, rel_path: str):
+        spec = importlib.util.spec_from_file_location(modname, str(src_dir / rel_path))
+        if spec is None or spec.loader is None:
+            raise ImportError(f"Could not load {modname} from {src_dir / rel_path}")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[modname] = module
+        spec.loader.exec_module(module)
+        return module
+
+    models_mod = _load("brsd_src_models_bariatric_rsd", "models/bariatric_rsd.py")
+    dataset_mod = _load("brsd_src_data_dataset", "data/dataset.py")
+    BariatricRSD = getattr(models_mod, "BariatricRSD")
+    BariatricFrameDataset = getattr(dataset_mod, "BariatricFrameDataset")
+    from torch.utils.data import DataLoader                    # type: ignore
     return BariatricRSD, BariatricFrameDataset, DataLoader
 
 

@@ -226,17 +226,46 @@ def phase_head_prefix_sequence(
 
 def soft_embedding(
     posterior: np.ndarray,
-    embedding_table: torch.nn.Embedding,
+    embedding_table: torch.nn.Module,
 ) -> torch.Tensor:
     """Compute sum_k q(z=k) * E[k] as a single embedding vector.
 
+    Accepts either a raw ``nn.Embedding`` or a wrapper module exposing the
+    underlying table at ``.embedding`` (e.g., ``PhaseOrderEmbedding`` in
+    ``scripts/lambda_setup/src/models/bariatric_rsd.py``).
+
     Returns a 1D tensor of shape (embed_dim,) on the same device / dtype as
-    ``embedding_table.weight``.
+    the underlying weight matrix.
     """
-    w = torch.as_tensor(posterior, dtype=embedding_table.weight.dtype,
-                        device=embedding_table.weight.device)
+    if isinstance(embedding_table, torch.nn.Embedding):
+        weight = embedding_table.weight
+    elif hasattr(embedding_table, "embedding") and isinstance(
+        embedding_table.embedding, torch.nn.Embedding
+    ):
+        weight = embedding_table.embedding.weight
+    else:
+        raise TypeError(
+            f"soft_embedding: cannot locate nn.Embedding weight on "
+            f"{type(embedding_table).__name__}"
+        )
+
+    w = torch.as_tensor(posterior, dtype=weight.dtype, device=weight.device)
+    # The model's embedding may have more rows than the kmeans pipeline
+    # produces clusters (e.g., NUM_PHASE_ORDER_CLUSTERS=8 architectural
+    # ceiling, with K=6 actual clusters at this fold). Pad the posterior
+    # with zeros so the matmul is well-defined; unused slots had no
+    # gradient at training time and contribute nothing to the mixture.
+    n_slots = weight.shape[0]
+    if w.numel() > n_slots:
+        raise ValueError(
+            f"soft_embedding: posterior has {w.numel()} entries but "
+            f"embedding only has {n_slots} rows"
+        )
+    if w.numel() < n_slots:
+        pad = torch.zeros(n_slots - w.numel(), dtype=w.dtype, device=w.device)
+        w = torch.cat([w, pad])
     # (K, d) x (K,) -> (d,)
-    return embedding_table.weight.T @ w
+    return weight.T @ w
 
 
 # ---------------------------------------------------------------------------
@@ -330,6 +359,7 @@ def evaluate_causal_rsd_pixel_only(
         # clips one at a time. Encoder + temporal forward at batch=1 is the
         # honest implementation; the small throughput cost is the price of
         # a correct causal evaluation.
+        predicted_phases: List[int] = []
         for sample_idx, _start in clip_list:
             posterior = assigner.phase_sequence_to_posterior(predicted_phases)
             emb = soft_embedding(posterior, model.phase_order_embed)

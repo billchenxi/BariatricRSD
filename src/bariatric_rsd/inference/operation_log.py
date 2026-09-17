@@ -180,6 +180,7 @@ class OperationLogger:
         self._rsd_milestones_hit: set = set()
         self._last_timestamp: float = 0.0
         self._total_frames: int = 0
+        self._finalized: bool = False
 
         # Accumulated predictions for summary stats
         self._all_rsd: List[Tuple[float, float]] = []  # (timestamp, rsd)
@@ -212,6 +213,12 @@ class OperationLogger:
             deviation_score: Deviation probability [0, 1].
             phase_confidence: Confidence of phase prediction.
         """
+        if self._finalized:
+            raise RuntimeError(
+                "OperationLogger has already been finalized; create a new logger "
+                "or avoid generating reports before streaming is complete."
+            )
+
         self._last_timestamp = timestamp_sec
         self._total_frames += 1
 
@@ -346,6 +353,9 @@ class OperationLogger:
 
     def finalize(self):
         """Call after the last frame to close any open segments."""
+        if self._finalized:
+            return
+
         t = self._last_timestamp
 
         # Close current phase
@@ -374,6 +384,7 @@ class OperationLogger:
             description=f"Operation completed — total duration: {t / 60:.1f} minutes",
             rsd_progress=1.0,
         ))
+        self._finalized = True
 
     # ─── Report Generation ───
 

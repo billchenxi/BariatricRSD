@@ -119,6 +119,31 @@ def test_operation_logger():
     assert "events" in json_report
     assert json_report["metadata"]["procedure"] == "RYGB"
 
+    # Repeated export should not duplicate finalized events or segments.
+    phases_before = len(json_report["phases"])
+    events_before = len(json_report["events"])
+    json_report_again = logger.generate_json()
+    assert len(json_report_again["phases"]) == phases_before
+    assert len(json_report_again["events"]) == events_before
+
+
+def test_parse_cholec80_annotations_normalizes_video_ids(tmp_path):
+    """Cholec80 annotation stems should map to extracted frame folder names."""
+    from bariatric_rsd.data.annotation_parser import parse_cholec80_annotations
+
+    annotation_file = tmp_path / "video01-phase.txt"
+    annotation_file.write_text(
+        "Frame Phase\n"
+        "0 Preparation\n"
+        "25 Preparation\n"
+        "50 CalotTriangleDissection\n"
+    )
+
+    annotations = parse_cholec80_annotations(str(tmp_path), fps=25.0)
+
+    assert "video01" in annotations
+    assert "Preparation" in annotations["video01"]
+
 
 def test_config_dataclasses():
     """Test configuration dataclass defaults."""

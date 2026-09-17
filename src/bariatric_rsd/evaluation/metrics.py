@@ -310,18 +310,24 @@ def evaluate_model(
             # RSD
             rsd_pred = outputs["rsd"].squeeze(-1).cpu().numpy()
             rsd_target = batch["rsd"].numpy()
+            if rsd_pred.ndim == 2 and rsd_target.ndim == 1:
+                rsd_pred = rsd_pred[:, -1]
             all_rsd_pred.append(rsd_pred.flatten())
             all_rsd_target.append(rsd_target.flatten())
 
             # Deviation
             dev_pred = torch.sigmoid(outputs["deviation"]).squeeze(-1).cpu().numpy()
             dev_target = batch["deviation"].numpy()
+            if dev_pred.ndim == 2 and dev_target.ndim == 1:
+                dev_pred = dev_pred[:, -1]
             all_dev_pred.append(dev_pred.flatten())
             all_dev_target.append(dev_target.flatten())
 
             # Phase
             phase_pred = outputs["phase"].argmax(dim=-1).cpu().numpy()
             phase_target = batch["phase"].numpy()
+            if phase_pred.ndim == 2 and phase_target.ndim == 1:
+                phase_pred = phase_pred[:, -1]
             all_phase_pred.append(phase_pred.flatten())
             all_phase_target.append(phase_target.flatten())
 
