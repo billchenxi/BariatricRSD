@@ -296,9 +296,20 @@ under a commercial DUA.** This is what the incumbents do, it is why they
 sell a capture layer first, and it means the first paying pilot is
 simultaneously the first training set.
 
-**Action:** add `DATA_LINEAGE.md` recording which checkpoints touched
-which datasets, with hashes, before the next training run. Proving a
-checkpoint never touched NC data retroactively is close to impossible.
+**Done 2026-09-20.** [`DATA_LINEAGE.md`](../DATA_LINEAGE.md) records which
+checkpoints touched which datasets, with hashes. It is *generated* from the
+artifacts by `python -m brsd_lib.data_lineage` rather than hand-written, so it
+cannot drift from the tree unnoticed; `--verify` re-checks integrity and exits
+non-zero on drift. Regenerate after any run that produces a checkpoint, and
+before any release or external deposit.
+
+It recorded 74 artifacts, **all research-lineage, none product-lineage**, and
+verified 17 checkpoint hashes against the weight manifest. Two findings came
+out of it that were not previously written down: five reproducibility-deposit
+checkpoints are symlinks into the gitignored 45 GB `lambda_mirror/` rather than
+independent copies, so the deposit does not survive that directory being
+pruned; and no cluster artifact records `min_df`, confirming §V.3 from the
+artifacts themselves.
 
 ## III.2 Market: the best-funded company in this space just failed
 
@@ -1033,7 +1044,8 @@ sellable.**
 
 1. Form the company; begin SAM.gov / SBA / eRA Commons registration the
    same week.
-2. Write `DATA_LINEAGE.md` (III.1) **before any further training run**.
+2. ~~Write `DATA_LINEAGE.md` (III.1)~~ — **done 2026-09-20**; regenerate it
+   after any run that produces a checkpoint.
 3. File an **NSF Project Pitch** — days of work, fast official feedback,
    no commitment.
 4. Aim at **NIH SBIR Jan 5 or Apr 5, 2027**, most likely through AHRQ
@@ -1055,7 +1067,7 @@ DUA to solve III.1.
 
 | Window | Work and decision |
 |---|---|
-| Sep 17–30 | Resolve the Paper 1 status conflict. Locate corrected MB140 annotations and video roots; recover event/step fields; count event onsets, severities, unknowns per center; establish the operation-level overlap map. Write `DATA_LINEAGE.md`. Start company registrations. |
+| Sep 17–30 | Resolve the Paper 1 status conflict. Locate corrected MB140 annotations and video roots; recover event/step fields; count event onsets, severities, unknowns per center; establish the operation-level overlap map. ~~Write `DATA_LINEAGE.md`~~ (done Sep 20). Start company registrations. |
 | Oct 1–15 | Collaborator reviews an initial label sample if clinically qualified; otherwise recruit qualified review before any clinical claim. Freeze one endpoint; build elapsed-time and phase baselines. File NSF Project Pitch. |
 | Oct 16–Nov 15 | Small frozen-feature pilot, calibrated on development cases; assess event counts, false alarms, true warning time. **Decide whether anticipation is identifiable before scaling.** Begin one Layer B or Layer C partnership conversation. |
 | Nov 16–Dec 15 | Confirmatory comparisons; untouched-center evaluation where feasible; complete draft. Regulatory consult on Non-Device CDS classification. |
@@ -1069,7 +1081,14 @@ draft is not automatically the safety-study protocol.
 
 ## VII.3 Deliverables
 
-- [ ] `DATA_LINEAGE.md` — checkpoint-to-dataset provenance with hashes
+- [x] `DATA_LINEAGE.md` — checkpoint-to-dataset provenance with hashes.
+      **Done 2026-09-20.** Generated, not hand-written, by
+      `python -m brsd_lib.data_lineage`; re-verify with `--verify`, which exits
+      non-zero on drift. 74 artifacts recorded, all research-lineage, 17
+      manifest hashes verified. It surfaced two things worth acting on: five
+      reproducibility-deposit checkpoints are symlinks into the gitignored
+      45 GB `lambda_mirror/`, so the deposit is not self-contained; and no
+      cluster artifact records `min_df`, confirming §V.3.
 - [ ] One frozen experiment manifest: splits, checkpoint IDs,
       preprocessing, allowed inputs, metrics, selected comparisons
 - [ ] A baseline reproduction report and measured compute estimate
