@@ -27,7 +27,7 @@ the repository.
 
 | Question | Conflict | How to settle it |
 |---|---|---|
-| **Was Paper 1 accepted?** | `README.md` (Aug 10) says "Submitted; awaiting notification (Sept 2026)". `PAPER_2A_REVIEWER_HARDENING.md` (Jun 4) opens "immediately after the **NeurIPS 2026 rejection** of Paper 1". `NEXT_PAPER_PLAN.md` notes the conflict without resolving it. | Check the OpenReview record for submission #706. Do not cite Paper 1 as accepted or rejected until you have. |
+| ~~**Was Paper 1 accepted?**~~ **Resolved 2026-09-23.** | The June 4 memo's "NeurIPS 2026 rejection" is **chronologically impossible**: NeurIPS 2026 released reviews on Jul 22 and notifies authors on **Sep 24, 2026 AoE** ([official dates](https://neurips.cc/Conferences/2026/Dates)). No decision existed on June 4. The README is correct — Paper 1 is still pending. | Notification lands **Sep 24**. Read it before any further venue planning; several downstream choices fork on it. |
 | **PI eligibility / appointment** | `cdmrp_fy27_path.md` asserts PhD-student status categorically; a later header retracts that as unsupported; `NEXT_PAPER_PLAN.md` says teaching at UCSC establishes neither. | **Largely moot now** — see Part I. Matters only for STTR and for collaborator-held grants. |
 | **MB140 phase count** | Paper 1 and the README use **14 phases**. The official CAMMA repository documents **12 phases and 46 steps**. | Recover the corrected source annotations (Part IV.1). This is part of the label audit, not a separate task. |
 | **Dataset availability** | README: raw MB140/Cholec80 frames died with the Lambda filesystem June 2026. `lambda_mirror/` holds outputs, logs, labels — enough to reproduce reported *numbers*, not to retrain. | Re-acquisition required before any feature extraction. Cholec80 needs a fresh CAMMA DUA. |
@@ -849,6 +849,52 @@ all split memberships and reconstruct a matched clustering control. Fresh
 baseline training, target-hardware timing, and scout runs remain
 outstanding. No cloud instance or paid training has been launched.
 
+## V.5 Episode-level anticipation is identifiable (2026-09-23)
+
+The §VII.2 gate — *"decide whether anticipation is identifiable before
+scaling"* — is now answerable from the label exports already in the checkout,
+with no GPU and no frame data. Reproduce with
+`python -m brsd_lib.episode_audit --all-folds`.
+
+§IV.1 is right that the **case-level** endpoint is near-degenerate: 138 of 140
+operations carry at least one flag. But contiguous runs of `is_deviation` form
+discrete events, and at the **episode level** the same flag is a workable
+target:
+
+| Quantity | Value |
+|---|---|
+| Discrete episodes, MB140 fold 0 | **736** across 138/140 operations |
+| Per centre | 331 Bern (BBP) · 405 Strasbourg (SBP) |
+| Episodes per operation | median 5, mean 5.3, max 14 |
+| Episode duration | median 53 s, mean 95 s, 27% longer than 2 min |
+| Episodes in each fold's 40-operation test split | 197 – 241 |
+| Onsets with ≥60 s of usable prefix | 731 of 736 |
+
+Prefix-only anticipation class balance, excluding frames inside an ongoing
+episode from the denominator (scoring those would be detection, not
+anticipation):
+
+| Horizon | Positive | Eligible | Rate |
+|---|---:|---:|---:|
+| 15 s | 10,889 | 700,335 | 1.55% |
+| 30 s | 21,557 | 700,335 | 3.08% |
+| 60 s | 42,163 | 700,335 | **6.02%** |
+| 120 s | 80,820 | 700,335 | 11.54% |
+
+**Reading.** A 6% positive rate at 60 s is an ordinary imbalanced-detection
+problem, not a hopeless one, and ~200 test episodes per fold is enough to
+measure a sensitivity-at-fixed-alarm-rate endpoint with useful precision.
+Five operations have their first onset inside 60 s and must be excluded or
+special-cased; two have no episode at all.
+
+**What this does not establish.** Episodes are **flag-derived, not
+adjudicated**: `is_deviation` came from `Overall > 0`, with category, severity
+and step discarded and a missing `Overall` silently mapped to zero. This shows
+the endpoint is *measurable*. It says nothing about clinical validity, and
+clinician review of a sample is still required before any clinical claim. It
+also does not replace recovering the corrected MB140 source labels — with
+category and severity restored, the same episodes become far more informative.
+
 ## V.4 Headline numbers from Paper 1
 
 Carried forward for reference; re-verify before citing.
@@ -1068,8 +1114,8 @@ DUA to solve III.1.
 | Window | Work and decision |
 |---|---|
 | Sep 17–30 | Resolve the Paper 1 status conflict. Locate corrected MB140 annotations and video roots; recover event/step fields; count event onsets, severities, unknowns per center; establish the operation-level overlap map. ~~Write `DATA_LINEAGE.md`~~ (done Sep 20). Start company registrations. |
-| Oct 1–15 | Collaborator reviews an initial label sample if clinically qualified; otherwise recruit qualified review before any clinical claim. Freeze one endpoint; build elapsed-time and phase baselines. File NSF Project Pitch. |
-| Oct 16–Nov 15 | Small frozen-feature pilot, calibrated on development cases; assess event counts, false alarms, true warning time. **Decide whether anticipation is identifiable before scaling.** Begin one Layer B or Layer C partnership conversation. |
+| Oct 1–15 | **File the NSF Project Pitch first** — 1–2 month turnaround gates the Mar 4 2027 deadline. Collaborator reviews an initial label sample if clinically qualified; otherwise recruit qualified review before any clinical claim. Freeze one endpoint at 60 s (per §V.5); build elapsed-time and phase-risk baselines. |
+| Oct 16–Nov 15 | Small frozen-feature pilot, calibrated on development cases; assess false alarms per operating hour and true warning time against the baselines. ~~Decide whether anticipation is identifiable~~ — **settled 2026-09-23, §V.5**. Begin one Layer B or Layer C partnership conversation. |
 | Nov 16–Dec 15 | Confirmatory comparisons; untouched-center evaluation where feasible; complete draft. Regulatory consult on Non-Device CDS classification. |
 | Jan–Feb 2027 | MICCAI-ready study or expanded journal submission depending on actual evidence. NIH SBIR Jan 5 or Apr 5 application. Public benchmark release when permitted. |
 
