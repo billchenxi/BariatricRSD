@@ -1,0 +1,41 @@
+# Exact inference config used to produce Cholec80 test MAE = 3.563 min
+# (Run 019-C: 3-seed ensemble + H-flip TTA + per-video isotonic).
+#
+# This file is the source of truth that scripts/verify_cholec80_3.56.sh
+# reads. Reviewers should not need to edit it.
+
+dataset: cholec80
+split: test  # 30-video public phase-labeled subset
+
+# Clip formulation (matches training)
+sequence_len: 8
+frame_stride: 5
+img_size: 224
+target_position: middle  # Cholec80 used the centered-window protocol
+
+# Model architecture (matches training)
+num_phases: 7
+visual_encoder: vit_base_patch16_224
+encoder_freeze_layers: 6
+
+# Inference batch
+batch_size: 64
+num_workers: 8
+
+# Ensemble + post-processing (this is what gives 3.56)
+checkpoints:
+  - weights/cholec80/run018_seed42.pth
+  - weights/cholec80/run018_seed123.pth
+  - weights/cholec80/run018_seed777.pth
+tta_hflip: true        # 6 forward passes per clip (3 seeds × 2 views)
+isotonic: true         # per-video monotone-non-increase via sklearn
+                       # IsotonicRegression(increasing=False)
+
+# Denormalization
+denorm_minutes: 90.0   # MAE in minutes = MAE_normalized * 90.0
+
+# Expected output
+expected_mae_min: 3.563
+expected_mae_min_median: 2.890
+expected_mae_min_per_clip: 2.813
+tolerance: 0.01

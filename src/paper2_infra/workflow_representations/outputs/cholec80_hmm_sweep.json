@@ -1,0 +1,69 @@
+{
+  "sweep": [
+    {
+      "n_states": 2,
+      "train_loglik": -58904.97246911013,
+      "n_free_params": 15,
+      "bic": 117977.05546357989,
+      "converged": true,
+      "val_loglik": -12362.895452988987,
+      "val_loglik_per_frame": -0.8453261848197597
+    },
+    {
+      "n_states": 3,
+      "train_loglik": -32800.872603495685,
+      "n_free_params": 26,
+      "bic": 65891.40345094806,
+      "converged": true,
+      "val_loglik": -6715.037975646576,
+      "val_loglik_per_frame": -0.4591478957707061
+    },
+    {
+      "n_states": 4,
+      "train_loglik": -29139.04405357207,
+      "n_free_params": 39,
+      "bic": 58712.575473079174,
+      "converged": true,
+      "val_loglik": -5929.109650886237,
+      "val_loglik_per_frame": -0.40540920689820426
+    },
+    {
+      "n_states": 6,
+      "train_loglik": -12213.003419261458,
+      "n_free_params": 71,
+      "bic": 25216.996658558488,
+      "converged": true,
+      "val_loglik": -2130.1800460387867,
+      "val_loglik_per_frame": -0.14565333648128456
+    },
+    {
+      "n_states": 8,
+      "train_loglik": -1389.9705652194395,
+      "n_free_params": 111,
+      "bic": 4016.559018100126,
+      "converged": true,
+      "val_loglik": -248.48668926346602,
+      "val_loglik_per_frame": -0.01699054285562161
+    },
+    {
+      "n_states": 10,
+      "train_loglik": -1389.9837642630378,
+      "n_free_params": 159,
+      "bic": 4551.339097338132,
+      "converged": true,
+      "val_loglik": -248.4898328194225,
+      "val_loglik_per_frame": -0.016990757799618634
+    },
+    {
+      "n_states": 12,
+      "train_loglik": -1389.6431683564765,
+      "n_free_params": 215,
+      "bic": 5174.5372002009535,
+      "converged": true,
+      "val_loglik": -248.44227565936458,
+      "val_loglik_per_frame": -0.01698750602799074
+    }
+  ],
+  "best_by_bic": 8,
+  "best_by_val_loglik": 12
+}

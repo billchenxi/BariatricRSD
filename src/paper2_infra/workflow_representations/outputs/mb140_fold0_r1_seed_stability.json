@@ -1,0 +1,70 @@
+{
+  "seed_stability": {
+    "n_seeds": 5,
+    "n_pairs": 10,
+    "mean_ari": 0.6299370500468312,
+    "min_ari": 0.4884704209445229,
+    "max_ari": 0.762885985563397,
+    "pairs": [
+      {
+        "seed_a": 0,
+        "seed_b": 1,
+        "adjusted_rand_index": 0.5363309521868386
+      },
+      {
+        "seed_a": 0,
+        "seed_b": 42,
+        "adjusted_rand_index": 0.7622907871308038
+      },
+      {
+        "seed_a": 0,
+        "seed_b": 123,
+        "adjusted_rand_index": 0.6744433376232434
+      },
+      {
+        "seed_a": 0,
+        "seed_b": 777,
+        "adjusted_rand_index": 0.6258568986692798
+      },
+      {
+        "seed_a": 1,
+        "seed_b": 42,
+        "adjusted_rand_index": 0.6080006251875267
+      },
+      {
+        "seed_a": 1,
+        "seed_b": 123,
+        "adjusted_rand_index": 0.5271886189246546
+      },
+      {
+        "seed_a": 1,
+        "seed_b": 777,
+        "adjusted_rand_index": 0.4884704209445229
+      },
+      {
+        "seed_a": 42,
+        "seed_b": 123,
+        "adjusted_rand_index": 0.7014970558304308
+      },
+      {
+        "seed_a": 42,
+        "seed_b": 777,
+        "adjusted_rand_index": 0.6124058184076149
+      },
+      {
+        "seed_a": 123,
+        "seed_b": 777,
+        "adjusted_rand_index": 0.762885985563397
+      }
+    ]
+  },
+  "inertias": {
+    "0": 44.87738977742491,
+    "1": 45.15096752689934,
+    "42": 44.99572464805176,
+    "123": 45.186044267162444,
+    "777": 44.98960848124581
+  },
+  "k": 6,
+  "source_labels": "labels/mb140_fold0_labels.json"
+}

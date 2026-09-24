@@ -1,0 +1,51 @@
+# Exact inference config for MB140 fold 0 strict prefix-only validation
+# (Run 033 — §6.1 headline).
+#
+# Used by scripts/verify_mb140_strict.sh. The condition (no_token /
+# oracle / decoupled-oracle) is selected by the script's --condition flag
+# and selects the corresponding checkpoint set; the rest of the config
+# is shared.
+
+dataset: mb140
+fold: 0
+split: val
+
+# Clip formulation
+sequence_len: 8
+frame_stride: 5
+img_size: 224
+target_position: last  # strict prefix-only — KEY DIFFERENCE from Cholec80
+
+# Model architecture
+num_phases: 14
+visual_encoder: vit_base_patch16_224
+encoder_freeze_layers: 6
+
+# Inference batch
+batch_size: 64
+num_workers: 8
+
+# Per-condition checkpoint sets (per-seed, no ensemble — §6.1 reports raw per-seed val MAE)
+checkpoints_by_condition:
+  no_token:
+    - weights/mb140/run033_no_token_seed42.pth     # expected 13.17
+    - weights/mb140/run033_no_token_seed123.pth    # expected 13.10
+    - weights/mb140/run033_no_token_seed777.pth    # expected 12.83
+  oracle:
+    - weights/mb140/run033_oracle_seed42.pth       # expected 12.18
+    - weights/mb140/run033_oracle_seed123.pth      # expected 12.23
+    - weights/mb140/run033_oracle_seed777.pth      # expected 12.36
+  decoupled:
+    - weights/mb140/run033_decoupled_seed42.pth    # expected 12.32
+    - weights/mb140/run033_decoupled_seed123.pth   # expected 12.19
+    - weights/mb140/run033_decoupled_seed777.pth   # expected 12.04
+
+# Denormalization (MB140 mean duration ~108 min)
+denorm_minutes: 108.0
+
+# Expected aggregate (mean ± std across 3 seeds)
+expected_by_condition:
+  no_token:   { mean: 13.03, std: 0.18 }
+  oracle:     { mean: 12.26, std: 0.09 }
+  decoupled:  { mean: 12.18, std: 0.11 }
+tolerance_seed_mean: 0.05
