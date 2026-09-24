@@ -65,9 +65,9 @@ the legacy scripts still work, but new code should use `brsd_lib.labels`):
 
 | File | Line | Context |
 |------|-----:|---------|
-| `lambda_setup/scripts/06_build_labels.py` | 95 | MB140 adapter |
-| `lambda_setup/scripts/09_build_cholec80_labels.py` | 104 | Cholec80 adapter |
-| `lambda_setup/src/data/prepare_labels.py` | 188 | generic bariatric parser |
-| `lambda_setup/src/data/dataset.py` | 377 | `MultiBypass140Dataset.__getitem__` fallback |
+| `scripts/lambda_setup/scripts/06_build_labels.py` | 95 | MB140 adapter |
+| `scripts/lambda_setup/scripts/09_build_cholec80_labels.py` | 104 | Cholec80 adapter |
+| `scripts/lambda_setup/src/data/prepare_labels.py` | 188 | generic bariatric parser |
+| `scripts/lambda_setup/src/data/dataset.py` | 377 | `MultiBypass140Dataset.__getitem__` fallback |
 
 These will be migrated to `brsd_lib.labels` in a follow-up commit.

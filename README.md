@@ -17,12 +17,12 @@ BariatricRSD is an end-to-end Transformer framework for surgical video analysis 
 
 > **Planning:** all forward-looking strategy — direction, data, venues,
 > funding, and the commercialization path — is consolidated in
-> [`docs/STRATEGY.md`](plans/STRATEGY.md) (2026-09-17). It also records
+> [`plans/STRATEGY.md`](plans/STRATEGY.md) (2026-09-17). It also records
 > open conflicts, including Paper 1's acceptance status below.
 
 | Track | State |
 |---|---|
-| **Paper 1** — NeurIPS 2026 E&D #706 | Submitted; awaiting notification (Sept 2026). Reviewer responses drafted in [`docs/paper1_neurips2026/REBUTTAL_FILING_READY.md`](papers/paper1_neurips2026/notes/REBUTTAL_FILING_READY.md). Log: [`SESSION_LOG.md`](papers/paper1_neurips2026/notes/SESSION_LOG.md) *(closed)* |
+| **Paper 1** — NeurIPS 2026 E&D #706 | Submitted; awaiting notification (Sept 2026). Reviewer responses drafted in [`papers/paper1_neurips2026/notes/REBUTTAL_FILING_READY.md`](papers/paper1_neurips2026/notes/REBUTTAL_FILING_READY.md). Log: [`SESSION_LOG.md`](papers/paper1_neurips2026/notes/SESSION_LOG.md) *(closed)* |
 | **Paper 2A** — foundation-model causal benchmark | **Phase 0**: CPU-side infrastructure complete, hardware/access items blocked. See [`PHASE_0_REPORT.md`](papers/paper2_forecasting/phase_0/PHASE_0_REPORT.md) and [`SESSION_LOG.md`](papers/paper2_forecasting/SESSION_LOG.md) *(active)* |
 | **Compute** | No GPU instance running. Lambda filesystem decommissioned June 2026. |
 
@@ -282,7 +282,7 @@ workflow conditioning — see the non-identifiability finding linked above.
 
 Five folds × three seeds, mean val MAE in minutes. Reproduce the analysis
 with `python -m paper2_infra.evaluation.fold_stability --summary-json
-paper/phase_e_summary.json --baseline no_token --treatment decoupled`.
+papers/paper1_neurips2026/manuscript/phase_e_summary.json --baseline no_token --treatment decoupled`.
 
 | Fold | No token | Oracle | Decoupled | Δ decoupled |
 |---|---:|---:|---:|---:|
@@ -300,15 +300,15 @@ Neither paired test reaches significance (p = 0.15 over 15 matched runs;
 p = 0.63 over 5 fold means). Between-fold spread is 7.7× the effect.
 
 All ± values are sample standard deviation (ddof=1) across the 3 seeds,
-matching [`paper/phase_e_summary.json`](papers/paper1_neurips2026/manuscript/phase_e_summary.json).
+matching [`papers/paper1_neurips2026/manuscript/phase_e_summary.json`](papers/paper1_neurips2026/manuscript/phase_e_summary.json).
 *Note: the submitted manuscript quotes `12.18 ± 0.11` for fold-0
 decoupled, which is the population std (ddof=0) while its `13.03 ± 0.18`
 is the sample std — mixed conventions in one comparison. Appendix C's
 `13.03 ± 0.13` matches neither. Flagged for camera-ready; no conclusion
 changes.*
 
-Full run inventory: [`paper/results_manifest.csv`](papers/paper1_neurips2026/manuscript/results_manifest.csv).
-Aggregate: [`paper/phase_e_summary.md`](papers/paper1_neurips2026/manuscript/phase_e_summary.md).
+Full run inventory: [`papers/paper1_neurips2026/manuscript/results_manifest.csv`](papers/paper1_neurips2026/manuscript/results_manifest.csv).
+Aggregate: [`papers/paper1_neurips2026/manuscript/phase_e_summary.md`](papers/paper1_neurips2026/manuscript/phase_e_summary.md).
 
 ## Citation
 
