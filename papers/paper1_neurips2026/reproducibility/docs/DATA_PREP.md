@@ -1,5 +1,10 @@
 # Data preparation
 
+> **Label exports are not published.** They are derived from MultiBypass140
+> and Cholec80 (CC BY-NC-SA 4.0, NonCommercial) and are withheld for that
+> reason. Regenerate them from the source datasets under your own data-use
+> agreement; see `DATA_LINEAGE.md` at the repository root.
+
 Cholec80 and MultiBypass140 are the two datasets used in this paper.
 Neither is shipped with this reproducibility package — both have
 restrictive licenses, and the videos total ~360 GB. Reviewers download

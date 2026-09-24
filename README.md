@@ -15,15 +15,14 @@ BariatricRSD is an end-to-end Transformer framework for surgical video analysis 
 
 ## Repository status (2026-08-10)
 
-> **Planning:** all forward-looking strategy — direction, data, venues,
-> funding, and the commercialization path — is consolidated in
-> [`plans/STRATEGY.md`](plans/STRATEGY.md) (2026-09-17). It also records
-> open conflicts, including Paper 1's acceptance status below.
+> **Planning and research records are not published.** Strategy, funding,
+> unpublished manuscripts and internal findings are kept out of this
+> repository by design. What is here is the code.
 
 | Track | State |
 |---|---|
-| **Paper 1** — NeurIPS 2026 E&D #706 | Submitted; awaiting notification (Sept 2026). Reviewer responses drafted in [`papers/paper1_neurips2026/notes/REBUTTAL_FILING_READY.md`](papers/paper1_neurips2026/notes/REBUTTAL_FILING_READY.md). Log: [`SESSION_LOG.md`](papers/paper1_neurips2026/notes/SESSION_LOG.md) *(closed)* |
-| **Paper 2A** — foundation-model causal benchmark | **Phase 0**: CPU-side infrastructure complete, hardware/access items blocked. See [`PHASE_0_REPORT.md`](papers/paper2_forecasting/phase_0/PHASE_0_REPORT.md) and [`SESSION_LOG.md`](papers/paper2_forecasting/SESSION_LOG.md) *(active)* |
+| **Paper 1** — NeurIPS 2026 E&D #706 | Submitted; awaiting notification (Sept 2026). |
+| **Paper 2A** — foundation-model causal benchmark | Phase 0: CPU-side infrastructure complete; hardware and data-access items blocked. |
 | **Compute** | No GPU instance running. Lambda filesystem decommissioned June 2026. |
 
 > ⚠️ **Datasets are not present in this checkout.** The raw MB140 and
@@ -35,11 +34,11 @@ BariatricRSD is an end-to-end Transformer framework for surgical video analysis 
 Two Phase 0 findings materially affect how results in this repository
 should be read:
 
-- **[Fold-variance dominance](papers/paper2_forecasting/phase_0/PHASE_0_FINDING_FOLD_VARIANCE.md)** —
+- **Fold-variance dominance** —
   on MB140, 98% of the paired conditioning effect's variance is
   between-fold and 2% between-seed. Effects below ~0.5 min are not
   resolvable on a 5-fold split at any seed count.
-- **[Workflow-representation non-identifiability](papers/paper2_forecasting/phase_0/PHASE_0_FINDING_REPRESENTATION.md)** —
+- **Workflow-representation non-identifiability** —
   the k-means phase-order cluster id is unstable to the random seed alone
   (ARI 0.63 on MB140) and is not recovered by an independent
   representation family (ARI 0.03–0.08).
@@ -222,32 +221,17 @@ scripts/                         # Operational + experiment scripts
   paper1_runs/                   # run0NN_*.sh experiment drivers for Paper 1
   extract_cholec80_frames.sh, sync_from_lambda.sh, h100_bootstrap.sh
 
-plans/                           # Forward-looking strategy
-  STRATEGY.md                    # Single authoritative planning document
-  grants/                        # Resource-access applications
-  archive/                       # Superseded plans
-
-docs/                            # Reference documentation
-  runbooks/                      # Lambda deploy / HF upload / shutdown / setup
-
-papers/                          # One directory per paper
-  paper1_neurips2026/            # "When Does Workflow Conditioning Help RSD?"
-    manuscript/                  # Drafts, figures, slides, poster, exports
-    notes/                       # Findings, audits, rebuttal, closed log
-    reproducibility/             # Cited checkpoints, manifest, verify scripts
-  paper2_forecasting/            # Stable workflow representations (active)
-    phase_0/                     # Feasibility findings and backbone matrix
-    SESSION_LOG.md               # Active development log
-
-labels/                          # Per-video phase label + cluster artifacts
-lambda_mirror/                   # Archived run outputs and logs (gitignored)
 notebooks/                       # Exploratory analysis
-archive/                         # Superseded trees, kept on disk, untracked
+
+papers/paper1_neurips2026/
+  reproducibility/               # Verification scripts, configs, weight manifest
+
+DATA_LINEAGE.md                  # Which artifact derives from which dataset
 ```
 
-**Adding a paper.** Create `papers/paperN_<topic>/` with the same shape —
-`manuscript/`, `notes/`, and whatever artifacts it needs. Shared code belongs in
-`src/`; anything paper-specific stays under that paper's directory.
+**Not in this repository.** Planning documents, unpublished manuscripts,
+research notes and the NonCommercial label exports are kept locally. Paths
+referenced below that are absent from your checkout are intentional.
 
 ## Training Configuration
 
@@ -300,15 +284,15 @@ Neither paired test reaches significance (p = 0.15 over 15 matched runs;
 p = 0.63 over 5 fold means). Between-fold spread is 7.7× the effect.
 
 All ± values are sample standard deviation (ddof=1) across the 3 seeds,
-matching [`papers/paper1_neurips2026/manuscript/phase_e_summary.json`](papers/paper1_neurips2026/manuscript/phase_e_summary.json).
+matching the Phase E aggregate (`phase_e_summary.json`, not published).
 *Note: the submitted manuscript quotes `12.18 ± 0.11` for fold-0
 decoupled, which is the population std (ddof=0) while its `13.03 ± 0.18`
 is the sample std — mixed conventions in one comparison. Appendix C's
 `13.03 ± 0.13` matches neither. Flagged for camera-ready; no conclusion
 changes.*
 
-Full run inventory: [`papers/paper1_neurips2026/manuscript/results_manifest.csv`](papers/paper1_neurips2026/manuscript/results_manifest.csv).
-Aggregate: [`papers/paper1_neurips2026/manuscript/phase_e_summary.md`](papers/paper1_neurips2026/manuscript/phase_e_summary.md).
+Full run inventory is kept with the manuscript and is not published.
+
 
 ## Citation
 
