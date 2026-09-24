@@ -95,3 +95,15 @@ papers/paper1_neurips2026/reproducibility/labels/*.json
 # Local agent/editor configuration — contains absolute paths, SSH hosts and
 # infrastructure detail; never belongs in a public repository.
 /.claude/
+
+# ─── Private: kept locally, never published (added 2026-09-24) ───────────────
+# Strategy, funding, unpublished research and manuscripts. This repository is
+# an Apache-2.0 code release; the research record stays on disk.
+/plans/
+/docs/runbooks/
+/papers/paper1_neurips2026/notes/
+/papers/paper1_neurips2026/manuscript/
+/papers/paper2_forecasting/
+# MB140/Cholec80-derived label exports (CC BY-NC-SA 4.0, NonCommercial) —
+# same restriction as /labels/. See DATA_LINEAGE.md.
+/papers/paper1_neurips2026/reproducibility/labels/
