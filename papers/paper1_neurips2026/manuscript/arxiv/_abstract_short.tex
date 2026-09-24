@@ -1,0 +1,22 @@
+We study when explicit workflow information---defined as a surgery's
+overall phase order---improves remaining-surgery-duration (RSD) prediction
+from surgical video. We compare a video-only baseline with
+workflow-conditioned models on two contrasting benchmarks: MultiBypass140,
+a multicenter Roux-en-Y gastric bypass dataset with workflow diversity, and
+Cholec80, a more standardized single-center cholecystectomy dataset. Under
+a strict prefix-only protocol, decoupled workflow conditioning reduces
+MultiBypass140 fold-0 validation MAE from 13.03 $\pm$ 0.18 to 12.18 $\pm$
+0.14 min (3 seeds); the 5-fold $\times$ 3-seed mean gain is $-$0.19 min.
+Cross-center training on Bern and evaluation on Strasbourg reduces MAE from
+17.80 $\pm$ 0.55 to 17.33 $\pm$ 0.15 min. Randomly reassigning workflow
+labels removes the gain. A deployable variant that infers workflow from the
+model's phase predictions on the observed prefix still improves MAE by 0.18
+min within-center and 0.22 min cross-center under a matched metric. On
+Cholec80, workflow conditioning is null under the strict protocol and
+harmful for prefix estimates under the legacy centered-window protocol. Our
+strongest Cholec80 inference-time stack reaches 3.56 min MAE on a 30-video
+public phase-labeled subset, but this is not a like-for-like SOTA claim: the
+split is non-canonical and the gain over a 4.46-min single-model baseline
+comes mainly from isotonic calibration and ensembling. Workflow conditioning
+helps when real workflow variation is present and adds little on standardized
+benchmarks.

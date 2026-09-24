@@ -1,0 +1,135 @@
+{
+  "_comment": "Weight manifest. Each entry maps a logical name to a relative path within the anonymous review HuggingFace deposit (resolved via the HF_REPO env var at upload time) plus the SHA256 of the checkpoint as used to produce the paper's numbers. The repository handle is intentionally omitted here for double-blind anonymization; the live URL is supplied via the supplementary submission and rolled to a non-anonymous handle on acceptance.",
+  "_total_size_estimate_mb": 5000,
+  "cholec80_seed42": {
+    "logical_name": "Run 018 transfer-from-MB140 \u2192 Cholec80, seed 42",
+    "hf_path": "cholec80/run018_seed42.pth",
+    "sha256": "2054bc8cc7c1f1ff6ddd78e6451f2809eaf904d0d0799ae028c19424a6e6b3d5",
+    "size_mb": 1387.25,
+    "produces_with_isotonic_only": 3.694,
+    "trained_on": "Cholec80 36-video train, val on 6, test on 30 public phase-labeled videos",
+    "notes": "Single-seed checkpoint used for the ablation row (Run 019-D)"
+  },
+  "cholec80_seed123": {
+    "logical_name": "Run 018 transfer-from-MB140 \u2192 Cholec80, seed 123",
+    "hf_path": "cholec80/run018_seed123.pth",
+    "sha256": "bba3354fc848325112860cc9a9e5ef8bc7f7fa708e466db58d38f6198696c564",
+    "size_mb": 1387.25,
+    "trained_on": "Cholec80 36-video train, val on 6, test on 30 public phase-labeled videos"
+  },
+  "cholec80_seed777": {
+    "logical_name": "Run 018 transfer-from-MB140 \u2192 Cholec80, seed 777",
+    "hf_path": "cholec80/run018_seed777.pth",
+    "sha256": "5d98d8baf60c86738e121d0cff7e7f017e94ff1d9d9dd82651eae2ee53eec70f",
+    "size_mb": 1387.25,
+    "trained_on": "Cholec80 36-video train, val on 6, test on 30 public phase-labeled videos"
+  },
+  "mb140_strict_no_token_seed42": {
+    "logical_name": "Run 033 strict prefix-only no-token, fold 0, seed 42",
+    "hf_path": "mb140/run033_no_token_seed42.pth",
+    "sha256": "9c4429fd3f423d5851e25fcc7b882180ba580d58a124c5f2d953d0beba4c2453",
+    "produces": 13.17,
+    "size_mb": 1387.31
+  },
+  "mb140_strict_no_token_seed123": {
+    "logical_name": "Run 033 strict prefix-only no-token, fold 0, seed 123",
+    "hf_path": "mb140/run033_no_token_seed123.pth",
+    "sha256": "d488e952b7b345c8388139b39ae84ddc16f54509d6e6fe4bb42bcffd727ce873",
+    "produces": 13.1,
+    "size_mb": 1387.31
+  },
+  "mb140_strict_no_token_seed777": {
+    "logical_name": "Run 033 strict prefix-only no-token, fold 0, seed 777",
+    "hf_path": "mb140/run033_no_token_seed777.pth",
+    "sha256": "12b727f68b2f43396ae384d67806dd296b975ee1562b6b296c392b6b5a384bc5",
+    "produces": 12.83,
+    "size_mb": 1387.31
+  },
+  "mb140_strict_oracle_seed42": {
+    "logical_name": "Run 033 strict prefix-only oracle, fold 0, seed 42",
+    "hf_path": "mb140/run033_oracle_seed42.pth",
+    "sha256": "b461ddde90ebd801c7fa23f8b3e7a31ace5bcc2418cdae17ef8298c08398ca4a",
+    "produces": 12.18,
+    "size_mb": 1387.31
+  },
+  "mb140_strict_oracle_seed123": {
+    "logical_name": "Run 033 strict prefix-only oracle, fold 0, seed 123",
+    "hf_path": "mb140/run033_oracle_seed123.pth",
+    "sha256": "65ccaf0ec4969170969b4cd0382b0c5457ae17b0f9d8589f5d52d087ee7674cf",
+    "produces": 12.23,
+    "size_mb": 1387.31
+  },
+  "mb140_strict_oracle_seed777": {
+    "logical_name": "Run 033 strict prefix-only oracle, fold 0, seed 777",
+    "hf_path": "mb140/run033_oracle_seed777.pth",
+    "sha256": "d350a1de55ad6535f73096e12bb13f0a0477df837da07a943c353b5d515c8ade",
+    "produces": 12.36,
+    "size_mb": 1387.31
+  },
+  "mb140_strict_decoupled_seed42": {
+    "logical_name": "Run 033 strict decoupled-oracle, fold 0, seed 42",
+    "hf_path": "mb140/run033_decoupled_seed42.pth",
+    "sha256": "388cb192eb5331fda02941735ef7cabcc468dab3e2b49574ef0bebf57c88b9f7",
+    "produces": 12.32,
+    "size_mb": 1387.31
+  },
+  "mb140_strict_decoupled_seed123": {
+    "logical_name": "Run 033 strict decoupled-oracle, fold 0, seed 123",
+    "hf_path": "mb140/run033_decoupled_seed123.pth",
+    "sha256": "c542fd1d07e9e9c3819245c72ecaa6b78a5c2032e993502469c8be3b655ed421",
+    "produces": 12.19,
+    "size_mb": 1387.31
+  },
+  "mb140_strict_decoupled_seed777": {
+    "logical_name": "Run 033 strict decoupled-oracle, fold 0, seed 777",
+    "hf_path": "mb140/run033_decoupled_seed777.pth",
+    "sha256": "ce60b90da157b026adae86d15f6676b5e3436b32850b3f06a152d46345d44719",
+    "produces": 12.04,
+    "size_mb": 1387.31
+  },
+  "mb140_longer_context_no_token_seed42": {
+    "logical_name": "Run 042 longer-context (seq_len 16) no-token, fold 0, seed 42",
+    "hf_path": "mb140/run042_longer_context_no_token_seed42.pth",
+    "sha256": "34569e90fd9d254a370cb14092721b97cbd972c2dea09b5dbee0403dc16bf677",
+    "produces": 12.46,
+    "trained_on": "MB140 fold 0, sequence_len=16 frame_stride=3 (vs Run 033 sequence_len=8 frame_stride=5)",
+    "notes": "Single-seed longer-context ablation, \u00a76.1.2",
+    "size_mb": 1387.31
+  },
+  "mb140_longer_context_decoupled_seed42": {
+    "logical_name": "Run 042 longer-context (seq_len 16) decoupled-oracle, fold 0, seed 42",
+    "hf_path": "mb140/run042_longer_context_decoupled_seed42.pth",
+    "sha256": "3dbca3be2b39e5ba9ef2a15ff3530c1c5beade06d8f6b984fca9c9228db55c9b",
+    "produces": 11.02,
+    "trained_on": "MB140 fold 0, sequence_len=16 frame_stride=3 (vs Run 033 sequence_len=8 frame_stride=5)",
+    "notes": "Single-seed longer-context ablation widens conditioning gain to -1.44 min, \u00a76.1.2",
+    "size_mb": 1387.31
+  },
+  "mb140_strict_decoupled_fold4_seed42": {
+    "logical_name": "Run 040 Phase E strict decoupled-oracle, fold 4, seed 42",
+    "hf_path": "mb140/run040_strict_decoupled_fold4_seed42.pth",
+    "sha256": "68a504a639a136af70c0ee2fb8b15d30ca55e0de94c2661240cace0136c4c505",
+    "produces": 8.48,
+    "trained_on": "MB140 fold 4 strict prefix-only protocol",
+    "notes": "Phase E 5-fold extension fold-4 decoupled-oracle, \u00a76.1.1 / Appendix C.1",
+    "size_mb": 1387.31
+  },
+  "mb140_strict_decoupled_fold4_seed123": {
+    "logical_name": "Run 040 Phase E strict decoupled-oracle, fold 4, seed 123",
+    "hf_path": "mb140/run040_strict_decoupled_fold4_seed123.pth",
+    "sha256": "10cd25d2d00a7629a825a4008edaa034bf5ad86284083e2f17502e035033ed29",
+    "produces": 8.74,
+    "trained_on": "MB140 fold 4 strict prefix-only protocol",
+    "notes": "Phase E 5-fold extension fold-4 decoupled-oracle, \u00a76.1.1 / Appendix C.1",
+    "size_mb": 1387.31
+  },
+  "mb140_strict_decoupled_fold4_seed777": {
+    "logical_name": "Run 040 Phase E strict decoupled-oracle, fold 4, seed 777",
+    "hf_path": "mb140/run040_strict_decoupled_fold4_seed777.pth",
+    "sha256": "da5db3d5673fa8561e0572b86c7a50225205a6f8fb9296addb7ee9c23a9545f7",
+    "produces": 8.82,
+    "trained_on": "MB140 fold 4 strict prefix-only protocol",
+    "notes": "Phase E 5-fold extension fold-4 decoupled-oracle, \u00a76.1.1 / Appendix C.1",
+    "size_mb": 1387.31
+  }
+}

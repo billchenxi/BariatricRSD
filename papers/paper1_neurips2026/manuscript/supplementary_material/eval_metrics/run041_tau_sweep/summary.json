@@ -1,0 +1,35 @@
+{
+  "checkpoint": "run033_strict_decoupled_seed42",
+  "rows": [
+    {
+      "tau": 0.01,
+      "mae_norm_mean": 0.11847537609744521,
+      "mae_minutes_mean": 11.819924227976797,
+      "n_videos": 20
+    },
+    {
+      "tau": 0.05,
+      "mae_norm_mean": 0.11891732108136097,
+      "mae_minutes_mean": 11.883328230228372,
+      "n_videos": 20
+    },
+    {
+      "tau": 0.1,
+      "mae_norm_mean": 0.1182689311699567,
+      "mae_minutes_mean": 11.814738817554854,
+      "n_videos": 20
+    },
+    {
+      "tau": 0.5,
+      "mae_norm_mean": 0.11796650881226667,
+      "mae_minutes_mean": 11.741351104493972,
+      "n_videos": 20
+    },
+    {
+      "tau": 1.0,
+      "mae_norm_mean": 0.1180316436559972,
+      "mae_minutes_mean": 11.737404688246206,
+      "n_videos": 20
+    }
+  ]
+}

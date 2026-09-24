@@ -1,0 +1,53 @@
+Loaded 80 train / 20 val videos, 14 phase labels
+HMM K=2 fit: 42 iterations, mean loglik -10633.419, converged=True
+HMM K=2 fit: 11 iterations, mean loglik -7046.955, converged=True
+HMM K=2 fit: 29 iterations, mean loglik -10633.426, converged=True
+HMM K=2 fit: 28 iterations, mean loglik -7123.965, converged=True
+HMM K=2 fit: 18 iterations, mean loglik -10633.425, converged=True
+HMM K=2: best of 5 restarts, mean loglik -7046.955
+HMM K=3 fit: 12 iterations, mean loglik -4991.054, converged=True
+HMM K=3 fit: 21 iterations, mean loglik -5010.027, converged=True
+HMM K=3 fit: 16 iterations, mean loglik -5052.974, converged=True
+HMM K=3 fit: 13 iterations, mean loglik -4968.817, converged=True
+HMM K=3 fit: 15 iterations, mean loglik -6169.243, converged=True
+HMM K=3: best of 5 restarts, mean loglik -4968.817
+HMM K=4 fit: 18 iterations, mean loglik -4101.705, converged=True
+HMM K=4 fit: 19 iterations, mean loglik -5344.612, converged=True
+HMM K=4 fit: 14 iterations, mean loglik -4198.074, converged=True
+HMM K=4 fit: 63 iterations, mean loglik -3630.177, converged=True
+HMM K=4 fit: 34 iterations, mean loglik -4995.561, converged=True
+HMM K=4: best of 5 restarts, mean loglik -3630.177
+HMM K=6 fit: 93 iterations, mean loglik -3708.352, converged=True
+HMM K=6 fit: 200 iterations, mean loglik -2727.037, converged=False
+HMM K=6 fit: 30 iterations, mean loglik -2544.990, converged=True
+HMM K=6 fit: 29 iterations, mean loglik -2835.520, converged=True
+HMM K=6 fit: 17 iterations, mean loglik -2797.907, converged=True
+HMM K=6: best of 5 restarts, mean loglik -2544.990
+HMM K=8 fit: 27 iterations, mean loglik -1502.808, converged=True
+HMM K=8 fit: 50 iterations, mean loglik -1862.324, converged=True
+HMM K=8 fit: 80 iterations, mean loglik -1408.260, converged=True
+HMM K=8 fit: 59 iterations, mean loglik -1832.334, converged=True
+HMM K=8 fit: 21 iterations, mean loglik -4062.404, converged=True
+HMM K=8: best of 5 restarts, mean loglik -1408.260
+HMM K=10 fit: 77 iterations, mean loglik -824.510, converged=True
+HMM K=10 fit: 28 iterations, mean loglik -1571.477, converged=True
+HMM K=10 fit: 69 iterations, mean loglik -1198.932, converged=True
+HMM K=10 fit: 20 iterations, mean loglik -1462.644, converged=True
+HMM K=10 fit: 32 iterations, mean loglik -1824.050, converged=True
+HMM K=10: best of 5 restarts, mean loglik -824.510
+HMM K=12 fit: 200 iterations, mean loglik -2222.968, converged=False
+HMM K=12 fit: 28 iterations, mean loglik -1258.951, converged=True
+HMM K=12 fit: 25 iterations, mean loglik -864.866, converged=True
+HMM K=12 fit: 40 iterations, mean loglik -1474.381, converged=True
+HMM K=12 fit: 21 iterations, mean loglik -1608.572, converged=True
+HMM K=12: best of 5 restarts, mean loglik -864.866
+  K= 2  BIC      1127888.4  params    29  val_loglik/frame -1.3403
+  K= 3  BIC       795619.3  params    47  val_loglik/frame -0.9363
+  K= 4  BIC       581696.0  params    67  val_loglik/frame -0.6946
+  K= 6  BIC       408661.6  params   113  val_loglik/frame -0.4848
+  K= 8  BIC       227484.1  params   167  val_loglik/frame -0.2686
+  K=10  BIC       134886.9  params   229  val_loglik/frame -0.1355
+  K=12  BIC       142250.3  params   299  val_loglik/frame -0.1798
+Best by BIC: K=10
+Best by held-out loglik: K=10
+Wrote paper2_infra/workflow_representations/outputs/mb140_fold0_hmm_sweep.json

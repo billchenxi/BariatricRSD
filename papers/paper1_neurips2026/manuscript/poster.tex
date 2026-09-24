@@ -1,0 +1,222 @@
+% poster.tex — A0 portrait poster (tikzposter)
+%
+% Backup poster for the NeurIPS 2026 Evaluations & Datasets submission.
+% Compile with: xelatex poster.tex   (or pdflatex)
+%
+% Re-formattable to A0 landscape by switching \documentclass orientation.
+% Re-formattable to 36" x 48" landscape by setting [size=custom,...].
+
+\documentclass[a0paper,portrait,fontscale=0.32]{tikzposter}
+
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\usetheme{Simple}
+\usecolorstyle{Default}
+
+\title{When Workflow Conditioning Helps Remaining Surgery Duration: MultiBypass140 vs Cholec80, with a Causal-at-Inference Variant}
+\author{Bill Chen \and [Co-authors TBD]}
+\institute{Xi Lab, [Affiliation]}
+\titlegraphic{}
+
+\begin{document}
+
+\maketitle
+
+% ---------- ROW 1: motivation, datasets, method, headline result ---------
+\begin{columns}
+
+  \column{0.25}
+  \block{1.\ The problem}{
+    \textbf{Remaining surgery duration} (RSD) prediction matters
+    operationally: OR time costs \$40--100/min.
+
+    \textbf{Workflow heterogeneity} is a hidden driver of error: two
+    surgeons performing the same procedure can have different phase
+    orderings, pacing, and center habits. A single non-conditioned
+    predictor blends regimes and is wrong on non-canonical workflows.
+
+    \textbf{Question.} \emph{When does giving the model an explicit
+    workflow signal help, and can we extract it causally at inference?}
+  }
+
+  \column{0.25}
+  \block{2.\ Two contrasting datasets}{
+    \begin{tabular}{lll}
+      \toprule
+      & \textbf{MB140} & \textbf{Cholec80} \\
+      \midrule
+      Procedure & RYGB & Cholecystectomy \\
+      Centers & 2 & 1 \\
+      Videos & 140 & 72 (public) \\
+      Median & 83 min & 35 min \\
+      Clusters & 6 balanced & 4, one $=$71\% \\
+      \bottomrule
+    \end{tabular}
+    \vspace{0.5em}
+
+    \textbf{MB140 has high workflow variability; Cholec80 has low.}
+    That contrast is the test bed.
+  }
+
+  \column{0.25}
+  \block{3.\ Method}{
+    Frozen-lower ViT-B/16 + Surgformer HTA + 3 heads (RSD, phase,
+    deviation). Workflow-cluster embedding prepended to frame sequence.
+
+    \textbf{Two ways to compute the cluster:}
+    \begin{itemize}
+      \item \textbf{Oracle (retrospective)}: from full-video phase
+            sequence. Privileged information; not deployable; an upper
+            bound.
+      \item \textbf{Causal-at-inference}: model's own phase head over
+            the prefix $\rightarrow$ TF-IDF + PCA + k-means $\rightarrow$
+            soft cluster posterior $\rightarrow$ mixture embedding.
+            Only pixels at test time.
+    \end{itemize}
+  }
+
+  \column{0.25}
+  \block{4.\ Headline result (MB140 fold 0)}{
+    \begin{tabular}{lr}
+      \toprule
+      Configuration & Val MAE \\
+      \midrule
+      No-token & 13.55 \\
+      Oracle & 12.59 $\pm$ 0.33 \\
+      \textbf{Causal} & \textbf{12.56 $\pm$ 0.04} \\
+      \bottomrule
+    \end{tabular}
+    \vspace{0.5em}
+
+    \textbf{Causal matches oracle, with 8$\times$ tighter cross-seed
+    variance.} Paired Wilcoxon: oracle and causal each beat no-token at
+    $p=0.026$; causal vs.\ oracle indistinguishable ($p=0.85$).
+  }
+
+\end{columns}
+
+% ---------- ROW 2: variability scaling + cross-center -------------------
+\begin{columns}
+
+  \column{0.5}
+  \block{5.\ The variability-scaling claim}{
+    \begin{tabular}{lll}
+      \toprule
+      Dataset & Workflow diversity & Token effect \\
+      \midrule
+      MB140 & High (largest cluster 27\%) & $-$0.96 min \\
+      Cholec80 & Low (largest cluster 71\%) & $-$0.12 min (null) \\
+      \bottomrule
+    \end{tabular}
+    \vspace{0.5em}
+
+    \textbf{The benefit of workflow conditioning scales with the
+    workflow variability of the dataset.} The Cholec80 null is
+    \emph{predicted} by the cluster-size histogram alone --- it
+    confirms the scaling hypothesis.
+  }
+
+  \column{0.5}
+  \block{6.\ Cross-center is still hard}{
+    \begin{tabular}{lr}
+      \toprule
+      Bern $\rightarrow$ Strasbourg & Val MAE \\
+      \midrule
+      No-token & 18.26 \\
+      Oracle & 18.05 \\
+      Causal & TBD (in progress) \\
+      \bottomrule
+    \end{tabular}
+    \vspace{0.5em}
+
+    Workflow conditioning closes $\sim$0.2 of a 6-minute gap.
+    \textbf{Multi-center distributional shift, not workflow alone, is
+    the dominant unsolved problem.}
+  }
+
+\end{columns}
+
+% ---------- ROW 3: causal pipeline figure -------------------------------
+\block{7.\ Causal-at-inference pipeline}{
+  \centering
+  \begin{tikzpicture}[node distance=1.5cm, every node/.style={align=center}]
+    \node (frames)  [draw, rounded corners] {Prefix frames\\$x_{1{:}t}$};
+    \node (vit)     [draw, rounded corners, right=of frames]   {ViT-B + HTA};
+    \node (phase)   [draw, rounded corners, right=of vit]      {Phase head\\($\hat\phi_{1{:}t}$)};
+    \node (bigram)  [draw, rounded corners, right=of phase]    {TF-IDF\\over phase bigrams};
+    \node (pca)     [draw, rounded corners, right=of bigram]   {PCA(16) +\\k-means centroids};
+    \node (post)    [draw, rounded corners, right=of pca]      {Soft posterior\\$q(z|x_{1{:}t})$};
+    \node (mix)     [draw, rounded corners, right=of post]     {$\sum_k q_k \mathbf{E}[k]$\\workflow token};
+
+    \draw[->] (frames) -- (vit);
+    \draw[->] (vit)    -- (phase);
+    \draw[->] (phase)  -- (bigram);
+    \draw[->] (bigram) -- (pca);
+    \draw[->] (pca)    -- (post);
+    \draw[->] (post)   -- (mix);
+  \end{tikzpicture}
+
+  \vspace{0.5em}
+  No future frames or ground-truth phase labels at inference. Phase-head
+  accuracy 0.78 $\rightarrow$ cluster agreement with oracle 91\%
+  $\rightarrow$ RSD MAE matches oracle.
+}
+
+% ---------- ROW 4: take-aways, limitations, references ------------------
+\begin{columns}
+
+  \column{0.34}
+  \block{8.\ Take-aways}{
+    \begin{enumerate}
+      \item \textbf{Benchmark choice matters}: Cholec80 saturates,
+            MB140 exposes the workflow signal.
+      \item \textbf{Causal-at-inference is feasible}: the model's own
+            phase head recovers the oracle-quality signal.
+      \item \textbf{Cross-center is the next problem}: workflow
+            conditioning helps only a little; modeling visual-domain
+            and operative-style shift is required.
+    \end{enumerate}
+  }
+
+  \column{0.33}
+  \block{9.\ Limitations}{
+    \begin{itemize}
+      \item Causal at inference, not at training (teacher forcing).
+      \item 5-fold CV partially complete; final manuscript reports
+            cross-fold mean $\pm$ std.
+      \item Cholec80 on 72 of 80 videos (8 lack public phase labels);
+            comparisons to TransLocal / Bose are directional, not
+            benchmark-clean.
+      \item Deviation head $\sim$0.40 F1 (auxiliary, not competitive).
+    \end{itemize}
+  }
+
+  \column{0.33}
+  \block{10.\ Code \& citations}{
+    \textbf{Code:} \texttt{brsd\_lib} clean-room library
+    (\texttt{causal\_cluster}, \texttt{smoothing}, \texttt{stats},
+    \dots).
+
+    \textbf{Anchor citations:}
+    Twinanda~et~al.~(2018) RSDNet;
+    Loukas~et~al.~(2024) TransLocal;
+    Yang~et~al.~(2024) Surgformer;
+    Lavanchy~et~al.~(2024) MultiBypass140;
+    Vapnik~\&~Vashist~(2009) LUPI.
+
+    \vspace{0.5em}
+    \textbf{Full paper}: \texttt{paper/review\_manuscript.docx}
+    (anonymized version provided to OpenReview).
+
+    [QR code: paper PDF + code repo]
+  }
+
+\end{columns}
+
+\end{document}

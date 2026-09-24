@@ -1,0 +1,9 @@
+Loaded 80 train / 20 val videos, 14 phase labels
+HMM K=6 fit: 93 iterations, mean loglik -3708.352, converged=True
+HMM K=6 fit: 200 iterations, mean loglik -2727.037, converged=False
+HMM K=6 fit: 30 iterations, mean loglik -2544.990, converged=True
+HMM K=6 fit: 29 iterations, mean loglik -2835.520, converged=True
+HMM K=6 fit: 17 iterations, mean loglik -2797.907, converged=True
+HMM K=6: best of 5 restarts, mean loglik -2544.990
+H(z) causal (normalized): 0.729 | oracle: 0.725
+Wrote paper2_infra/workflow_representations/outputs/mb140_fold0_hmm_k6.json

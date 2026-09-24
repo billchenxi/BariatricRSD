@@ -1,0 +1,393 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{introduction}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Model and workflow signals}{1}{subsection.1.1}\protected@file@percent }
+\newlabel{our-approach}{{1.1}{1}{Model and workflow signals}{subsection.1.1}{}}
+\citation{lavanchy2024multibypass}
+\citation{twinanda2017endonet}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overall project pipeline. A surgical video is sampled into an 8-frame clip, encoded framewise by ViT-B/16, stacked into an \(8 \times 768\) frame-feature tensor, and combined with a workflow token before the HTA-inspired temporal head predicts RSD, phase, and deviation outputs.}}{2}{figure.caption.2}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:paper-overview}{{1}{2}{Overall project pipeline. A surgical video is sampled into an 8-frame clip, encoded framewise by ViT-B/16, stacked into an \(8 \times 768\) frame-feature tensor, and combined with a workflow token before the HTA-inspired temporal head predicts RSD, phase, and deviation outputs}{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Evaluation regimes and protocols}{2}{subsection.1.2}\protected@file@percent }
+\newlabel{datasets-and-evaluation-protocols}{{1.2}{2}{Evaluation regimes and protocols}{subsection.1.2}{}}
+\citation{twinanda2019rsdnet}
+\citation{loukas2024translocal}
+\citation{kostopoulos2025prediction}
+\citation{yengera2019unsupervised}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \textbf  {Experiment matrix.} Summary of the center splits, protocols, workflow-conditioning settings, and run sources used in the paper.}}{3}{table.caption.3}\protected@file@percent }
+\newlabel{tab:experiment-matrix}{{1}{3}{\textbf {Experiment matrix.} Summary of the center splits, protocols, workflow-conditioning settings, and run sources used in the paper}{table.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Contributions}{3}{subsection.1.3}\protected@file@percent }
+\newlabel{our-contributions}{{1.3}{3}{Contributions}{subsection.1.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.2}\protected@file@percent }
+\newlabel{related-work}{{2}{3}{Related Work}{section.2}{}}
+\citation{twinanda2017endonet}
+\citation{czempiel2020tecno}
+\citation{gao2021transsvnet}
+\citation{liu2023skit}
+\citation{yang2024surgformer}
+\citation{dosovitskiy2021vit}
+\citation{wightman2019timm}
+\citation{yang2024surgformer}
+\citation{kendall2018multitask}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{4}{section.3}\protected@file@percent }
+\newlabel{method}{{3}{4}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Architecture}{4}{subsection.3.1}\protected@file@percent }
+\newlabel{architecture}{{3.1}{4}{Architecture}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Inference: causal-at-inference variant}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{inference-causal-at-inference-variant}{{3.2}{4}{Inference: causal-at-inference variant}{subsection.3.2}{}}
+\gdef \LT@i {\LT@entry 
+    {1}{198.7425pt}\LT@entry 
+    {1}{198.7425pt}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{5}{section.4}\protected@file@percent }
+\newlabel{experimental-setup}{{4}{5}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{5}{section.5}\protected@file@percent }
+\newlabel{results}{{5}{5}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}MultiBypass140 within-center: workflow conditioning helps under the strict prefix-only protocol}{5}{subsection.5.1}\protected@file@percent }
+\newlabel{multibypass140-within-center-workflow-conditioning-helps-under-the-strict-prefix-only-protocol}{{5.1}{5}{MultiBypass140 within-center: workflow conditioning helps under the strict prefix-only protocol}{subsection.5.1}{}}
+\gdef \LT@ii {\LT@entry 
+    {1}{83.46422pt}\LT@entry 
+    {1}{115.27826pt}\LT@entry 
+    {1}{115.27826pt}\LT@entry 
+    {1}{83.46422pt}}
+\citation{vapnik2009lupi}
+\citation{czempiel2020tecno}
+\citation{ramesh2021mtmstcn}
+\gdef \LT@iii {\LT@entry 
+    {1}{75.89592pt}\LT@entry 
+    {1}{81.89592pt}\LT@entry 
+    {1}{81.89592pt}\LT@entry 
+    {1}{81.89592pt}\LT@entry 
+    {1}{75.89592pt}}
+\citation{lavanchy2024multibypass}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}5-fold cross-validation extension}{6}{subsubsection.5.1.1}\protected@file@percent }
+\newlabel{fold-cross-validation-extension}{{5.1.1}{6}{5-fold cross-validation extension}{subsubsection.5.1.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cross-center MultiBypass140: workflow conditioning helps under the strict protocol}{6}{subsection.5.2}\protected@file@percent }
+\newlabel{cross-center-multibypass140-workflow-conditioning-helps-under-the-strict-protocol}{{5.2}{6}{Cross-center MultiBypass140: workflow conditioning helps under the strict protocol}{subsection.5.2}{}}
+\gdef \LT@iv {\LT@entry 
+    {3}{108.34854pt}\LT@entry 
+    {1}{163.49889pt}\LT@entry 
+    {1}{35.32973pt}\LT@entry 
+    {3}{40.16994pt}}
+\gdef \LT@v {\LT@entry 
+    {3}{91.9994pt}\LT@entry 
+    {1}{124.2391pt}\LT@entry 
+    {1}{35.32973pt}\LT@entry 
+    {3}{40.16994pt}}
+\gdef \LT@vi {\LT@entry 
+    {3}{91.9994pt}\LT@entry 
+    {1}{124.2391pt}\LT@entry 
+    {3}{56.4297pt}\LT@entry 
+    {3}{45.16994pt}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cholec80: oracle null, teacher-forced prefix negative}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{cholec80-oracle-null-teacher-forced-prefix-negative}{{5.3}{7}{Cholec80: oracle null, teacher-forced prefix negative}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Strict pixel-only causal: deployable predictor evaluation}{7}{subsection.5.4}\protected@file@percent }
+\newlabel{strict-pixel-only-causal-deployable-predictor-evaluation}{{5.4}{7}{Strict pixel-only causal: deployable predictor evaluation}{subsection.5.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Main result pattern and controls. (A) On MB140 fold 0 under the strict prefix-only protocol, decoupled-oracle workflow conditioning improves MAE by 0.85 min over no-token. (B) The same decoupled architecture gives a smaller but positive cross-center gain from Bern to Strasbourg. (C) Cholec80 is the low-variability contrast case: the centered-window teacher-forced prefix penalty does not reproduce under the strict protocol. (D) Shuffling workflow tokens destroys the gain, supporting the interpretation that the token carries workflow meaning rather than merely adding parameter capacity.}}{8}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:main-result-pattern}{{2}{8}{Main result pattern and controls. (A) On MB140 fold 0 under the strict prefix-only protocol, decoupled-oracle workflow conditioning improves MAE by 0.85 min over no-token. (B) The same decoupled architecture gives a smaller but positive cross-center gain from Bern to Strasbourg. (C) Cholec80 is the low-variability contrast case: the centered-window teacher-forced prefix penalty does not reproduce under the strict protocol. (D) Shuffling workflow tokens destroys the gain, supporting the interpretation that the token carries workflow meaning rather than merely adding parameter capacity}{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}Posterior temperature is robust}{8}{subsubsection.5.4.1}\protected@file@percent }
+\newlabel{posterior-temperature-is-robust-appendix-b-ablation}{{5.4.1}{8}{Posterior temperature is robust}{subsubsection.5.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Statistical significance}{8}{subsection.5.5}\protected@file@percent }
+\newlabel{statistical-significance}{{5.5}{8}{Statistical significance}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion and Limitations}{8}{section.6}\protected@file@percent }
+\newlabel{discussion}{{6}{8}{Discussion and Limitations}{section.6}{}}
+\newlabel{limitations}{{6}{8}{Discussion and Limitations}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Implications of the variability-scaling result}{8}{subsection.6.1}\protected@file@percent }
+\newlabel{significance-what-the-variability-scaling-result-actually-buys-the-field}{{6.1}{8}{Implications of the variability-scaling result}{subsection.6.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Limitations and scope}{9}{subsection.6.2}\protected@file@percent }
+\newlabel{limitations-and-scope}{{6.2}{9}{Limitations and scope}{subsection.6.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\newlabel{conclusion}{{7}{9}{Conclusion}{section.7}{}}
+\citation{kingma2015adam}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Appendix A --- Implementation Details}{10}{section.8}\protected@file@percent }
+\newlabel{appendix-a-implementation-details}{{8}{10}{Appendix A --- Implementation Details}{section.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Appendix B --- Hyperparameter sensitivity and the smoother}{10}{section.9}\protected@file@percent }
+\newlabel{appendix-b-hyperparameter-sensitivity-and-the-smoother}{{9}{10}{Appendix B --- Hyperparameter sensitivity and the smoother}{section.9}{}}
+\gdef \LT@vii {\LT@entry 
+    {1}{61.18295pt}\LT@entry 
+    {1}{85.56483pt}\LT@entry 
+    {1}{85.56483pt}\LT@entry 
+    {1}{85.56483pt}\LT@entry 
+    {1}{79.56483pt}}
+\gdef \LT@viii {\LT@entry 
+    {1}{62.2595pt}\LT@entry 
+    {1}{68.2595pt}\LT@entry 
+    {1}{68.2595pt}\LT@entry 
+    {1}{68.2595pt}\LT@entry 
+    {1}{68.2595pt}\LT@entry 
+    {1}{62.2595pt}}
+\gdef \LT@ix {\LT@entry 
+    {3}{90.42957pt}\LT@entry 
+    {1}{30.18994pt}\LT@entry 
+    {1}{43.93983pt}\LT@entry 
+    {1}{48.93983pt}\LT@entry 
+    {1}{42.93983pt}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Appendix C --- Per-Fold and Per-Seed Tables}{11}{section.10}\protected@file@percent }
+\newlabel{appendix-c-per-fold-and-per-seed-tables}{{10}{11}{Appendix C --- Per-Fold and Per-Seed Tables}{section.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}C.1 MultiBypass140 strict-protocol 5-fold $\times $ 3-seed extension (Phase E)}{11}{subsection.10.1}\protected@file@percent }
+\newlabel{c.1-multibypass140-strict-protocol-5-fold-3-seed-extension-phase-e}{{10.1}{11}{C.1 MultiBypass140 strict-protocol 5-fold $\times $ 3-seed extension (Phase E)}{subsection.10.1}{}}
+\newlabel{c.1.1-fold-0-primary-result-run-033}{{10.1}{11}{C.1.1 Fold-0 primary result (Run 033)}{section*.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{C.1.1 Fold-0 primary result (Run 033)}{11}{section*.5}\protected@file@percent }
+\newlabel{c.1.2-per-fold-mean-std-across-all-5-folds}{{10.1}{11}{C.1.2 Per-fold mean $\pm $ std across all 5 folds}{section*.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{C.1.2 Per-fold mean $\pm $ std across all 5 folds}{11}{section*.6}\protected@file@percent }
+\newlabel{c.1.3-per-seed-values-for-folds-14}{{10.1}{11}{C.1.3 Per-seed values for folds 1--4}{section*.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{C.1.3 Per-seed values for folds 1--4}{11}{section*.7}\protected@file@percent }
+\newlabel{c.1.4-interpretation}{{10.1}{11}{C.1.4 Interpretation}{section*.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{C.1.4 Interpretation}{11}{section*.8}\protected@file@percent }
+\gdef \LT@x {\LT@entry 
+    {3}{74.85936pt}\LT@entry 
+    {1}{59.48949pt}\LT@entry 
+    {1}{76.54942pt}}
+\gdef \LT@xi {\LT@entry 
+    {3}{123.08696pt}\LT@entry 
+    {1}{53.38304pt}\LT@entry 
+    {1}{43.73976pt}\LT@entry 
+    {1}{43.73976pt}\LT@entry 
+    {3}{28.50002pt}}
+\gdef \LT@xii {\LT@entry 
+    {3}{74.85936pt}\LT@entry 
+    {1}{59.48949pt}\LT@entry 
+    {1}{76.54942pt}}
+\gdef \LT@xiii {\LT@entry 
+    {3}{123.08696pt}\LT@entry 
+    {1}{53.38304pt}\LT@entry 
+    {1}{43.73976pt}\LT@entry 
+    {1}{43.73976pt}\LT@entry 
+    {3}{28.50002pt}}
+\gdef \LT@xiv {\LT@entry 
+    {1}{61.18295pt}\LT@entry 
+    {1}{85.56483pt}\LT@entry 
+    {1}{85.56483pt}\LT@entry 
+    {1}{85.56483pt}\LT@entry 
+    {1}{79.56483pt}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}C.2 Strict-protocol bootstrap CIs + paired Wilcoxon (matched per-video metric)}{12}{subsection.10.2}\protected@file@percent }
+\newlabel{c.2-strict-protocol-bootstrap-cis-paired-wilcoxon-matched-per-video-metric}{{10.2}{12}{C.2 Strict-protocol bootstrap CIs + paired Wilcoxon (matched per-video metric)}{subsection.10.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}C.3 Cholec80 3-seed $\times $ 3-condition table}{12}{subsection.10.3}\protected@file@percent }
+\newlabel{c.3-cholec80-3-seed-3-condition-table}{{10.3}{12}{C.3 Cholec80 3-seed $\times $ 3-condition table}{subsection.10.3}{}}
+\gdef \LT@xv {\LT@entry 
+    {1}{52.03238pt}\LT@entry 
+    {1}{73.35248pt}\LT@entry 
+    {1}{73.35248pt}\LT@entry 
+    {1}{73.35248pt}\LT@entry 
+    {1}{73.35248pt}\LT@entry 
+    {1}{52.03238pt}}
+\gdef \LT@xvi {\LT@entry 
+    {3}{179.92632pt}\LT@entry 
+    {1}{53.38304pt}\LT@entry 
+    {1}{43.73976pt}\LT@entry 
+    {1}{43.73976pt}\LT@entry 
+    {1}{52.53976pt}}
+\gdef \LT@xvii {\LT@entry 
+    {1}{78.29588pt}\LT@entry 
+    {1}{108.40555pt}\LT@entry 
+    {1}{108.40555pt}\LT@entry 
+    {1}{102.40555pt}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.4}C.4 Legacy centered-window protocol (comparison)}{13}{subsection.10.4}\protected@file@percent }
+\newlabel{c.4-legacy-centered-window-protocol-comparison}{{10.4}{13}{C.4 Legacy centered-window protocol (comparison)}{subsection.10.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {11}Appendix D --- Negative Result: per-video Overfit-Residual Frame Filtering}{13}{section.11}\protected@file@percent }
+\newlabel{appendix-d-negative-result-per-video-overfit-residual-frame-filtering}{{11}{13}{Appendix D --- Negative Result: per-video Overfit-Residual Frame Filtering}{section.11}{}}
+\gdef \LT@xviii {\LT@entry 
+    {1}{198.7425pt}\LT@entry 
+    {1}{198.7425pt}}
+\@writefile{toc}{\contentsline {section}{\numberline {12}Appendix E --- Failure modes (qualitative)}{14}{section.12}\protected@file@percent }
+\newlabel{appendix-e-failure-modes-qualitative}{{12}{14}{Appendix E --- Failure modes (qualitative)}{section.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {13}Appendix F --- Shuffled-token semantic control (implementation and result)}{14}{section.13}\protected@file@percent }
+\newlabel{appendix-f-shuffled-token-semantic-control-implementation-and-result}{{13}{14}{Appendix F --- Shuffled-token semantic control (implementation and result)}{section.13}{}}
+\citation{twinanda2019rsdnet}
+\citation{loukas2024translocal}
+\citation{twinanda2019rsdnet}
+\@writefile{toc}{\contentsline {section}{\numberline {14}Appendix Z --- Extended discussion (cut from main paper for length)}{15}{section.14}\protected@file@percent }
+\newlabel{appendix-z-extended-discussion-cut-from-main-paper-for-length}{{14}{15}{Appendix Z --- Extended discussion (cut from main paper for length)}{section.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.1}Motivation}{15}{subsection.14.1}\protected@file@percent }
+\newlabel{motivation}{{14.1}{15}{Motivation}{subsection.14.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.2}The technical problem and where it gets hard}{15}{subsection.14.2}\protected@file@percent }
+\newlabel{the-technical-problem-and-where-it-gets-hard}{{14.2}{15}{The technical problem and where it gets hard}{subsection.14.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.3}The question this paper asks}{15}{subsection.14.3}\protected@file@percent }
+\newlabel{the-question-this-paper-asks}{{14.3}{15}{The question this paper asks}{subsection.14.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.4}Why this is a contribution}{15}{subsection.14.4}\protected@file@percent }
+\newlabel{why-this-is-a-contribution}{{14.4}{15}{Why this is a contribution}{subsection.14.4}{}}
+\citation{yengera2019unsupervised}
+\citation{kostopoulos2025prediction}
+\citation{lavanchy2024multibypass}
+\gdef \LT@xix {\LT@entry 
+    {3}{101.81903pt}\LT@entry 
+    {3}{97.00002pt}\LT@entry 
+    {1}{12.0pt}\LT@entry 
+    {3}{55.14966pt}\LT@entry 
+    {1}{42.54968pt}\LT@entry 
+    {3}{39.50002pt}\LT@entry 
+    {3}{36.00002pt}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.5}MultiBypass140}{16}{subsection.14.5}\protected@file@percent }
+\newlabel{multibypass140}{{14.5}{16}{MultiBypass140}{subsection.14.5}{}}
+\citation{twinanda2017endonet}
+\gdef \LT@xx {\LT@entry 
+    {3}{162.6385pt}\LT@entry 
+    {3}{149.30878pt}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Phase-order cluster diversity on MultiBypass140 (k = 6, balanced) versus Cholec80 (k = 4, single-cluster-dominant). The imbalance of Cholec80's cluster sizes is the predictor of the null result reported in the main-text Cholec80 result.}}{17}{figure.caption.9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Surgical duration distributions. MultiBypass140 spans 37 to 178 minutes with a clear bimodal Bern/Strasbourg structure; Cholec80 is much tighter and unimodal.}}{17}{figure.caption.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.6}Cholec80 (72-video public phase-labeled subset)}{17}{subsection.14.6}\protected@file@percent }
+\newlabel{cholec80-72-video-public-phase-labeled-subset}{{14.6}{17}{Cholec80 (72-video public phase-labeled subset)}{subsection.14.6}{}}
+\citation{loukas2024translocal}
+\citation{twinanda2019rsdnet}
+\citation{loukas2024translocal}
+\citation{wilcoxon1945ranking}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.7}Metrics}{18}{subsection.14.7}\protected@file@percent }
+\newlabel{metrics}{{14.7}{18}{Metrics}{subsection.14.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.8}Notation}{18}{subsection.14.8}\protected@file@percent }
+\newlabel{notation}{{14.8}{18}{Notation}{subsection.14.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.9}Workflow clustering pipeline (offline)}{18}{subsection.14.9}\protected@file@percent }
+\newlabel{workflow-clustering-pipeline-offline}{{14.9}{18}{Workflow clustering pipeline (offline)}{subsection.14.9}{}}
+\citation{vapnik2009lupi}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.10}Training: oracle (retrospective) variant}{19}{subsection.14.10}\protected@file@percent }
+\newlabel{training-oracle-retrospective-variant}{{14.10}{19}{Training: oracle (retrospective) variant}{subsection.14.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.11}Inference-time enhancements}{19}{subsection.14.11}\protected@file@percent }
+\newlabel{inference-time-enhancements}{{14.11}{19}{Inference-time enhancements}{subsection.14.11}{}}
+\gdef \LT@xxi {\LT@entry 
+    {1}{75.89592pt}\LT@entry 
+    {1}{81.89592pt}\LT@entry 
+    {1}{81.89592pt}\LT@entry 
+    {1}{81.89592pt}\LT@entry 
+    {1}{75.89592pt}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.12}Experimental design and rationale}{20}{subsection.14.12}\protected@file@percent }
+\newlabel{experimental-design-and-rationale}{{14.12}{20}{Experimental design and rationale}{subsection.14.12}{}}
+\newlabel{primary-experiments-tests-of-the-variability-scaling-claim}{{14.12}{20}{Primary experiments --- tests of the variability-scaling claim}{section*.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Primary experiments --- tests of the variability-scaling claim}{20}{section*.11}\protected@file@percent }
+\newlabel{controls-rule-out-alternative-explanations}{{14.12}{20}{Controls --- rule out alternative explanations}{section*.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Controls --- rule out alternative explanations}{20}{section*.12}\protected@file@percent }
+\gdef \LT@xxii {\LT@entry 
+    {1}{75.89592pt}\LT@entry 
+    {1}{81.89592pt}\LT@entry 
+    {1}{81.89592pt}\LT@entry 
+    {1}{81.89592pt}\LT@entry 
+    {1}{75.89592pt}}
+\gdef \LT@xxiii {\LT@entry 
+    {1}{96.37125pt}\LT@entry 
+    {1}{102.37125pt}\LT@entry 
+    {1}{102.37125pt}\LT@entry 
+    {1}{96.37125pt}}
+\newlabel{comparators-legacy-and-absolute-references}{{14.12}{21}{Comparators --- legacy and absolute references}{section*.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Comparators --- legacy and absolute references}{21}{section*.13}\protected@file@percent }
+\gdef \LT@xxiv {\LT@entry 
+    {1}{89.43233pt}\LT@entry 
+    {1}{123.22656pt}\LT@entry 
+    {1}{95.43233pt}\LT@entry 
+    {1}{89.43233pt}}
+\newlabel{what-we-deliberately-did-not-run}{{14.12}{22}{\texorpdfstring {What we deliberately did \emph {not} run}{What we deliberately did not run}}{section*.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{What we deliberately did \emph  {not} run}{22}{section*.14}\protected@file@percent }
+\newlabel{primary-results-at-a-glance}{{14.12}{22}{Primary results at a glance}{section*.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{Primary results at a glance}{22}{section*.15}\protected@file@percent }
+\gdef \LT@xxv {\LT@entry 
+    {3}{112.8206pt}\LT@entry 
+    {1}{85.30933pt}\LT@entry 
+    {1}{89.47937pt}\LT@entry 
+    {3}{31.27782pt}}
+\gdef \LT@xxvi {\LT@entry 
+    {1}{83.46422pt}\LT@entry 
+    {1}{115.27826pt}\LT@entry 
+    {1}{115.27826pt}\LT@entry 
+    {1}{83.46422pt}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces MultiBypass140 fold-0 validation MAE under the strict prefix-only protocol (3-seed Run 033): no-token (13.03 $\pm $ 0.18), oracle (12.26 $\pm $ 0.09), decoupled-oracle (12.18 $\pm $ 0.14). The decoupled-oracle row closes the phase/cluster circularity diagnosed in the main-paper limitations and is the best configuration in the paper.}}{23}{figure.caption.17}\protected@file@percent }
+\newlabel{longer-context-ablation}{{14.12}{23}{Longer-context ablation}{section*.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{Longer-context ablation}{23}{section*.16}\protected@file@percent }
+\newlabel{centered-window-comparison-legacy-protocol}{{14.12}{23}{Centered-window comparison (legacy protocol)}{section*.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{Centered-window comparison (legacy protocol)}{23}{section*.18}\protected@file@percent }
+\gdef \LT@xxvii {\LT@entry 
+    {3}{91.9994pt}\LT@entry 
+    {1}{128.77917pt}\LT@entry 
+    {3}{43.21931pt}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Within-center vs cross-center MAE on MultiBypass140.}}{24}{figure.caption.20}\protected@file@percent }
+\newlabel{centered-window-comparison-legacy-protocol-1}{{14.12}{24}{Centered-window comparison (legacy protocol)}{section*.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Centered-window comparison (legacy protocol)}{24}{section*.19}\protected@file@percent }
+\gdef \LT@xxviii {\LT@entry 
+    {3}{108.34854pt}\LT@entry 
+    {1}{107.57892pt}\LT@entry 
+    {1}{35.32973pt}\LT@entry 
+    {3}{40.16994pt}}
+\gdef \LT@xxix {\LT@entry 
+    {1}{67.68353pt}\LT@entry 
+    {1}{73.68353pt}\LT@entry 
+    {1}{94.23582pt}\LT@entry 
+    {1}{94.23582pt}\LT@entry 
+    {1}{67.68353pt}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.13}Shuffled-token semantic control: the workflow signal carries real information}{25}{subsection.14.13}\protected@file@percent }
+\newlabel{shuffled-token-semantic-control-the-workflow-signal-carries-real-information}{{14.13}{25}{Shuffled-token semantic control: the workflow signal carries real information}{subsection.14.13}{}}
+\newlabel{multibypass140-fold-0-within-center-deployable-metric}{{14.13}{25}{MultiBypass140 fold 0 within-center, deployable metric}{section*.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{MultiBypass140 fold 0 within-center, deployable metric}{25}{section*.21}\protected@file@percent }
+\gdef \LT@xxx {\LT@entry 
+    {1}{67.68353pt}\LT@entry 
+    {1}{73.68353pt}\LT@entry 
+    {1}{94.23582pt}\LT@entry 
+    {1}{94.23582pt}\LT@entry 
+    {1}{67.68353pt}}
+\gdef \LT@xxxi {\LT@entry 
+    {1}{83.46422pt}\LT@entry 
+    {1}{115.27826pt}\LT@entry 
+    {1}{115.27826pt}\LT@entry 
+    {1}{83.46422pt}}
+\newlabel{cross-center-bern-strasbourg-deployable-metric}{{14.13}{26}{Cross-center (Bern $\rightarrow $ Strasbourg), deployable metric}{section*.22}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-center (Bern $\rightarrow $ Strasbourg), deployable metric}{26}{section*.22}\protected@file@percent }
+\newlabel{take-away}{{14.13}{26}{Take-away}{section*.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{Take-away}{26}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.14}Cholec80 absolute numbers (secondary)}{26}{subsection.14.14}\protected@file@percent }
+\newlabel{cholec80-absolute-numbers-secondary}{{14.14}{26}{Cholec80 absolute numbers (secondary)}{subsection.14.14}{}}
+\gdef \LT@xxxii {\LT@entry 
+    {1}{71.52843pt}\LT@entry 
+    {1}{77.52843pt}\LT@entry 
+    {1}{99.37125pt}\LT@entry 
+    {1}{77.52843pt}\LT@entry 
+    {1}{71.52843pt}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Inference-time ablation on Cholec80. Isotonic post-processing alone is the dominant lever.}}{27}{figure.caption.25}\protected@file@percent }
+\newlabel{comparison-to-published-cholec80-rsd-baselines}{{14.14}{27}{Comparison to published Cholec80 RSD baselines}{section*.24}{}}
+\@writefile{toc}{\contentsline {paragraph}{Comparison to published Cholec80 RSD baselines}{27}{section*.24}\protected@file@percent }
+\gdef \LT@xxxiii {\LT@entry 
+    {1}{89.43233pt}\LT@entry 
+    {1}{123.22656pt}\LT@entry 
+    {1}{95.43233pt}\LT@entry 
+    {1}{89.43233pt}}
+\gdef \LT@xxxiv {\LT@entry 
+    {1}{96.37125pt}\LT@entry 
+    {1}{102.37125pt}\LT@entry 
+    {1}{102.37125pt}\LT@entry 
+    {1}{96.37125pt}}
+\newlabel{cross-dataset-leaderboard-view-different-datasets-reward-different-levers}{{14.14}{28}{Cross-dataset leaderboard view: different datasets reward different levers}{section*.26}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-dataset leaderboard view: different datasets reward different levers}{28}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.15}The variability-scaling claim}{28}{subsection.14.15}\protected@file@percent }
+\newlabel{the-variability-scaling-claim}{{14.15}{28}{The variability-scaling claim}{subsection.14.15}{}}
+\gdef \LT@xxxv {\LT@entry 
+    {1}{64.25993pt}\LT@entry 
+    {1}{70.25993pt}\LT@entry 
+    {1}{89.65503pt}\LT@entry 
+    {1}{89.65503pt}\LT@entry 
+    {1}{83.65503pt}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Variability-scaling curve. The marginal value of explicit workflow conditioning increases with cluster entropy H(z) and crosses zero on the way down. Cholec80 (H = 1.27 bits) lies in the null/negative regime; MB140 (H = 2.48 bits) lies firmly in the positive regime. The strict protocol removes the cross-center centered-window negative effect.}}{29}{figure.caption.27}\protected@file@percent }
+\newlabel{information-theoretic-interpretation-why-the-scaling-law-has-this-shape}{{14.15}{29}{Information-theoretic interpretation: why the scaling law has this shape}{section*.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{Information-theoretic interpretation: why the scaling law has this shape}{29}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.16}Diagnostic chain: phase head $\rightarrow $ cluster posterior $\rightarrow $ RSD MAE}{30}{subsection.14.16}\protected@file@percent }
+\newlabel{diagnostic-chain-phase-head-cluster-posterior-rsd-mae}{{14.16}{30}{Diagnostic chain: phase head $\rightarrow $ cluster posterior $\rightarrow $ RSD MAE}{subsection.14.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.17}Reproducibility resources}{30}{subsection.14.17}\protected@file@percent }
+\newlabel{reproducibility-resources}{{14.17}{30}{Reproducibility resources}{subsection.14.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Per-video MAE on MB140 fold 0 val, binned by surgery progress quantile. Three lines: strict no-token (red, 13.03 $\pm $ 0.18), strict oracle (blue, 12.26 $\pm $ 0.09), strict decoupled-oracle (purple, 12.18 $\pm $ 0.14). All three converge at \textasciitilde 10 min in early/mid surgery; oracle and no-token spike at 90\% while decoupled-oracle holds. Built from Run 036 per-clip CSVs.}}{31}{figure.caption.29}\protected@file@percent }
+\newlabel{why-the-combined-result-pattern-is-a-strength-not-a-dilution}{{14.17}{31}{Why the combined result pattern is a strength, not a dilution}{section*.30}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why the combined result pattern is a strength, not a dilution}{31}{section*.30}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{references}
+\bibcite{czempiel2020tecno}{{1}{2020}{{Czempiel et~al.}}{{Czempiel, Paschali, Keicher, Simson, Feussner, Kim, and Navab}}}
+\bibcite{dosovitskiy2021vit}{{2}{2021}{{Dosovitskiy et~al.}}{{Dosovitskiy, Beyer, Kolesnikov, Weissenborn, Zhai, Unterthiner, Dehghani, Minderer, Heigold, Gelly, Uszkoreit, and Houlsby}}}
+\bibcite{gao2021transsvnet}{{3}{2021}{{Gao et~al.}}{{Gao, Jin, Long, Dou, and Heng}}}
+\bibcite{kendall2018multitask}{{4}{2018}{{Kendall et~al.}}{{Kendall, Gal, and Cipolla}}}
+\bibcite{kingma2015adam}{{5}{2015}{{Kingma and Ba}}{{}}}
+\bibcite{kostopoulos2025prediction}{{6}{2025}{{Kostopoulos et~al.}}{{Kostopoulos, Cavouras, Glotsos, and Loukas}}}
+\bibcite{lavanchy2024multibypass}{{7}{2024}{{Lavanchy et~al.}}{{Lavanchy, Ramesh, Dall'Alba, Gonzalez, Fiorini, M{\"u}ller-Stich, Nett, Marescaux, Mutter, and Padoy}}}
+\bibcite{liu2023skit}{{8}{2023}{{Liu et~al.}}{{Liu, Huo, Peng, Sparks, Dasgupta, Granados, and Ourselin}}}
+\bibcite{loukas2024translocal}{{9}{2024}{{Loukas et~al.}}{{Loukas, Seimenis, Prevezanou, and Schizas}}}
+\bibcite{ramesh2021mtmstcn}{{10}{2021}{{Ramesh et~al.}}{{Ramesh, Dall'Alba, Gonzalez, Yu, Mascagni, Mutter, Marescaux, Fiorini, and Padoy}}}
+\bibcite{twinanda2017endonet}{{11}{2017}{{Twinanda et~al.}}{{Twinanda, Shehata, Mutter, Marescaux, de~Mathelin, and Padoy}}}
+\bibcite{twinanda2019rsdnet}{{12}{2019}{{Twinanda et~al.}}{{Twinanda, Yengera, Mutter, Marescaux, and Padoy}}}
+\bibcite{vapnik2009lupi}{{13}{2009}{{Vapnik and Vashist}}{{}}}
+\bibcite{wightman2019timm}{{14}{2019}{{Wightman}}{{}}}
+\bibcite{wilcoxon1945ranking}{{15}{1945}{{Wilcoxon}}{{}}}
+\bibcite{yang2024surgformer}{{16}{2024}{{Yang et~al.}}{{Yang, Luo, Wang, and Chen}}}
+\bibcite{yengera2019unsupervised}{{17}{2019}{{Yengera et~al.}}{{Yengera, Mutter, Marescaux, and Padoy}}}
+\gdef \@abspage@last{33}

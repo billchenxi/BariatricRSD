@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ssh -o StrictHostKeyChecking=no lambda-rsd \"ls /lambda/ 2>/dev/null; echo '---'; ls ~/miniconda/ 2>/dev/null || ls ~/miniconda3/ 2>/dev/null || ls ~/anaconda/ 2>/dev/null || echo 'No conda found'; echo '---'; df -h | grep -v tmpfs\")",
+      "Bash(ssh -o StrictHostKeyChecking=no lambda-rsd \"python3 --version && python3 -c 'import torch; print\\(torch.__version__, torch.cuda.is_available\\(\\)\\)' 2>/dev/null || echo 'torch not found'\")",
+      "Bash(rsync -avz --progress -e 'ssh -i /Users/bill/Documents/GitHub/bariatric_rsd/rsd.pem -o StrictHostKeyChecking=no' /Users/bill/Documents/GitHub/bariatric_rsd/lambda_setup/ ubuntu@192.222.50.14:/home/ubuntu/bariatric-rsd/ --exclude=__pycache__ '--exclude=*.pyc' --exclude=.DS_Store)",
+      "Bash(ssh -o StrictHostKeyChecking=no lambda-rsd \"ls /home/ubuntu/bariatric-rsd/ && echo '---' && ls /home/ubuntu/bariatric-rsd/src/\")",
+      "Bash(ssh -o StrictHostKeyChecking=no lambda-rsd \"cd /home/ubuntu/bariatric-rsd && bash deploy.sh 2>&1\")",
+      "Bash(echo \"Deploy started in background. PID: $!\")",
+      "Bash(ssh -o StrictHostKeyChecking=no lambda-rsd ' *)",
+      "Bash(ssh -o StrictHostKeyChecking=no lambda-rsd \"ls ~/miniconda/bin/conda 2>/dev/null && echo 'conda found' || echo 'conda missing'; ls ~/miniconda/ 2>/dev/null; which conda 2>/dev/null || echo 'no conda in PATH'\")",
+      "Bash(ssh -o StrictHostKeyChecking=no lambda-rsd \"ls -la ~/miniconda/ && ~/miniconda/_conda --version 2>/dev/null || echo 'no _conda'\")",
+      "Bash(rm -f poster.aux poster.log poster.out)",
+      "Bash(sed 's/→/->/g; s/≈/~/g; s/±/+\\\\/-/g; s/×/x/g; s/−/-/g; s/≤/<=/g' poster.md)",
+      "Bash(pandoc poster_ascii.md -o poster.pdf --pdf-engine=xelatex -V geometry:landscape -V geometry:paperwidth=48in -V geometry:paperheight=36in -V geometry:margin=1in -V fontsize=11pt -V documentclass=article -V classoption=twocolumn)"
+    ],
+    "additionalDirectories": [
+      "/Users/bill/Documents/GitHub/bariatric_rsd/paper",
+      "/Users/bill/Documents/GitHub/bariatric_rsd/paper/Formatting_Instructions_For_NeurIPS_2026"
+    ]
+  }
+}

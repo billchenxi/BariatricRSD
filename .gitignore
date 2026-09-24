@@ -76,3 +76,18 @@ us-east-3-*.txt
 
 # Archived/superseded trees — kept on disk, deliberately untracked
 /archive/
+
+# Frame-level label exports — deliberately NOT published (added 2026-09-24)
+#  1. Technical: individual files reach 164 MB, over GitHub's 100 MB hard limit.
+#  2. Licensing: these are frame-level annotations derived from MultiBypass140
+#     (CC BY-NC-SA 4.0, NonCommercial) including frame paths. Publishing them
+#     from a public repository redistributes a derivative of a dataset whose
+#     access is gated by a CAMMA data-use agreement. See DATA_LINEAGE.md.
+# Regenerate with scripts/lambda_setup/scripts/06_build_labels.py once the
+# source dataset has been re-acquired.
+/labels/
+
+# Redundant uncompressed copy in the reproducibility deposit: 165 MB, over
+# GitHub's limit, and byte-identical to the .gz beside it (verified 2026-09-24).
+papers/paper1_neurips2026/reproducibility/labels/*.json
+!papers/paper1_neurips2026/reproducibility/labels/*.json.gz

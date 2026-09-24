@@ -1,0 +1,31 @@
+# Exact dependency pins used to produce the reported numbers.
+# Source: Lambda Cloud GH200 instance, 2026-04 training/eval window.
+# Tested with Python 3.11.
+#
+# CUDA: torch 2.7.0 was built against CUDA 12.6. The matching torchvision
+# is 0.22.0. If you are on a different CUDA toolkit, install via the
+# matching wheel from https://download.pytorch.org/whl/.
+#
+# Pinning rationale:
+# - torch 2.7.0 / torchvision 0.22.0: training stack
+# - timm 1.0.26: ViT-B/16 encoder weights expect this class layout
+# - scikit-learn 0.23.2: IsotonicRegression must match the version that
+#   produced the 3.56 number; later sklearn versions changed numerical
+#   tolerances in IsotonicRegression and shift the result by ~0.01 min.
+# - scipy 1.8.0: pearsonr returns a tuple; later versions return an
+#   object with .statistic. The training/eval scripts use [0] indexing,
+#   which works with 1.8.0; pinning here so reviewers get the same code path.
+
+torch==2.7.0
+torchvision==0.22.0
+timm==1.0.26
+einops==0.7.0
+numpy==1.24.4
+pandas==2.0.3
+scipy==1.8.0
+scikit-learn==0.23.2
+matplotlib==3.7.5
+Pillow==10.3.0
+tqdm==4.66.4
+PyYAML==6.0.1
+huggingface_hub==0.23.4

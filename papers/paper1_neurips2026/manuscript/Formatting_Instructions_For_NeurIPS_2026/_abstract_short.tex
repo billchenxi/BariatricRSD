@@ -1,0 +1,34 @@
+We study when explicit workflow information, defined here as a surgery's
+overall phase order, improves remaining-surgery-duration (RSD)
+prediction from surgical video. We compare a video-only baseline against
+models that also use workflow information on two deliberately
+contrasting benchmarks: MultiBypass140, a multicenter Roux-en-Y gastric
+bypass dataset with meaningful workflow diversity, and Cholec80, a more
+standardized single-center cholecystectomy dataset. Under a strict
+prefix-only protocol that uses only frames available up to the
+prediction time, workflow information improves MultiBypass140
+within-center MAE on the development fold from 13.03 $\pm$ 0.18 to 12.18 $\pm$
+0.11 min (3 seeds); the 5-fold $\times$ 3-seed mean gain is $-$0.19 min. In
+cross-center evaluation, where the model is trained on Bern and
+evaluated on Strasbourg, the same approach improves MAE from 17.80 $\pm$
+0.55 to 17.33 $\pm$ 0.15 min. When we randomly reassign workflow labels
+across surgeries, the gain disappears, showing that the improvement
+comes from correct workflow information rather than from simply
+providing extra conditioning information. A deployable predictor that
+derives the workflow signal from the model's own phase predictions on
+the observed prefix, rather than from the full case, still beats the
+video-only baseline by 0.18 min within-center and 0.22 min cross-center
+under a matched metric. On Cholec80, however, workflow information
+provides little value: under the strict protocol, true workflow performs
+similarly to the video-only baseline, and under the legacy
+centered-window protocol prefix-based workflow estimates make prediction
+worse. As a secondary absolute-performance result, our strongest
+Cholec80 inference-time stack reaches 3.56 min MAE on the 30-video
+public phase-labeled subset. This is lower than older published Cholec80
+RSD results such as RSDNet (about 8 min) and TransLocal (7.10 min), but
+it is not a like-for-like SOTA claim because it is measured on a
+non-canonical subset, and the gain over our 4.46 min single-model
+baseline comes mainly from isotonic calibration and 3-seed ensembling
+rather than from workflow conditioning. Overall, workflow conditioning
+helps when the benchmark contains real workflow variation, but provides
+little benefit on more standardized benchmarks such as Cholec80.

@@ -1,0 +1,116 @@
+{
+  "run033_decoupled": {
+    "rows": [
+      {
+        "seed": 42,
+        "mae_min": null
+      },
+      {
+        "seed": 123,
+        "mae_min": null
+      },
+      {
+        "seed": 777,
+        "mae_min": null
+      }
+    ],
+    "mean": null,
+    "std": 0.0,
+    "n_seeds": 0
+  },
+  "run033_no_token": {
+    "rows": [
+      {
+        "seed": 42,
+        "mae_min": null
+      },
+      {
+        "seed": 123,
+        "mae_min": null
+      },
+      {
+        "seed": 777,
+        "mae_min": null
+      }
+    ],
+    "mean": null,
+    "std": 0.0,
+    "n_seeds": 0
+  },
+  "run033_oracle": {
+    "rows": [
+      {
+        "seed": 42,
+        "mae_min": null
+      },
+      {
+        "seed": 123,
+        "mae_min": null
+      },
+      {
+        "seed": 777,
+        "mae_min": null
+      }
+    ],
+    "mean": null,
+    "std": 0.0,
+    "n_seeds": 0
+  },
+  "run034_decoupled": {
+    "rows": [
+      {
+        "seed": 42,
+        "mae_min": null
+      },
+      {
+        "seed": 123,
+        "mae_min": null
+      },
+      {
+        "seed": 777,
+        "mae_min": null
+      }
+    ],
+    "mean": null,
+    "std": 0.0,
+    "n_seeds": 0
+  },
+  "run034_no_token": {
+    "rows": [
+      {
+        "seed": 42,
+        "mae_min": null
+      },
+      {
+        "seed": 123,
+        "mae_min": null
+      },
+      {
+        "seed": 777,
+        "mae_min": null
+      }
+    ],
+    "mean": null,
+    "std": 0.0,
+    "n_seeds": 0
+  },
+  "run034_oracle": {
+    "rows": [
+      {
+        "seed": 42,
+        "mae_min": null
+      },
+      {
+        "seed": 123,
+        "mae_min": null
+      },
+      {
+        "seed": 777,
+        "mae_min": null
+      }
+    ],
+    "mean": null,
+    "std": 0.0,
+    "n_seeds": 0
+  }
+}

@@ -1,0 +1,109 @@
+run_id,dataset,fold,seed,configuration,split,metric,value,std_or_ci,n_seeds,source_path,status,notes
+run010,MB140,0,42,oracle,val,mae_min,12.27,,1,outputs/run010_mb140_fold0_seed42/,locked,Best epoch 1
+run010,MB140,0,123,oracle,val,mae_min,12.36,,1,outputs/run010_mb140_fold0_seed123/,locked,Best epoch 1
+run010,MB140,0,777,oracle,val,mae_min,13.13,,1,outputs/run010_mb140_fold0_seed777/,locked,Best epoch later
+run010,MB140,0,3-seed,oracle,val,mae_min_mean,12.59,0.33,3,outputs/run010_mb140_fold0_seed*/,locked,3-seed mean ± std for paper headline
+run007,MB140,0,42,no_token,val,mae_min,13.55,,1,outputs/run007_mb140_fold0_no_token/,locked,Single seed only — gap to be closed by Run 026
+run022,MB140,1,42,oracle,val,mae_min,TBD,,1,outputs/run022_mb140_fold1_seed42/,locked,5-fold CV in progress
+run022,MB140,1,123,oracle,val,mae_min,TBD,,1,outputs/run022_mb140_fold1_seed123/,locked,
+run022,MB140,1,777,oracle,val,mae_min,TBD,,1,outputs/run022_mb140_fold1_seed777/,locked,
+run022,MB140,2,42,oracle,val,mae_min,TBD,,1,outputs/run022_mb140_fold2_seed42/,locked,
+run022,MB140,2,123,oracle,val,mae_min,TBD,,1,outputs/run022_mb140_fold2_seed123/,locked,
+run022,MB140,2,777,oracle,val,mae_min,TBD,,1,outputs/run022_mb140_fold2_seed777/,locked,
+run022,MB140,3,42,oracle,val,mae_min,TBD,,1,outputs/run022_mb140_fold3_seed42/,locked,
+run022,MB140,3,123,oracle,val,mae_min,TBD,,1,outputs/run022_mb140_fold3_seed123/,locked,
+run022,MB140,3,777,oracle,val,mae_min,TBD,,1,outputs/run022_mb140_fold3_seed777/,locked,
+run022,MB140,4,42,oracle,val,mae_min,TBD,,1,outputs/run022_mb140_fold4_seed42/,locked,
+run022,MB140,4,123,oracle,val,mae_min,TBD,,1,outputs/run022_mb140_fold4_seed123/,locked,
+run022,MB140,4,777,oracle,val,mae_min,TBD,,1,outputs/run022_mb140_fold4_seed777/,locked,
+run023,MB140,0,42,teacher_forced_prefix,val,mae_min,12.56,,1,outputs/run023_mb140_fold0_causal_seed42/,locked,
+run023,MB140,0,123,teacher_forced_prefix,val,mae_min,12.59,,1,outputs/run023_mb140_fold0_causal_seed123/,locked,
+run023,MB140,0,777,teacher_forced_prefix,val,mae_min,12.52,,1,outputs/run023_mb140_fold0_causal_seed777/,locked,
+run023,MB140,0,3-seed,teacher_forced_prefix,val,mae_min_mean,12.56,0.04,3,outputs/run023_mb140_fold0_causal_seed*/,locked,Teacher-forced prefix (3-seed) — uses GT phase labels at inference; not a deployable real-time number
+run024,Cholec80,-,42,teacher_forced_prefix,val,mae_min,4.95,,1,outputs/run024_cholec80_causal_seed42/,locked,
+run024,Cholec80,-,123,teacher_forced_prefix,val,mae_min,5.04,,1,outputs/run024_cholec80_causal_seed123/,locked,
+run024,Cholec80,-,777,teacher_forced_prefix,val,mae_min,5.09,,1,outputs/run024_cholec80_causal_seed777/,locked,
+run024,Cholec80,-,3-seed,teacher_forced_prefix,val,mae_min_mean,5.03,0.07,3,outputs/run024_cholec80_causal_seed*/,locked,Cholec80 teacher-forced prefix is NEGATIVE (worse than no-token 4.61 and oracle 4.49)
+run025,MB140,0,42-ensemble,oracle+adam_smooth,val,mae_min,TBD,,3,outputs/run025_adam_smooth_eval/summary.json,queued,Inference-time smoother eval
+run026,MB140,0,42,no_token,val,mae_min,12.87,,1,outputs/run026_mb140_fold0_no_token_seed42/,locked,5-fold no-token baseline
+run026,MB140,0,123,no_token,val,mae_min,12.97,,1,outputs/run026_mb140_fold0_no_token_seed123/,locked,
+run026,MB140,0,777,no_token,val,mae_min,12.79,,1,outputs/run026_mb140_fold0_no_token_seed777/,locked,
+run026,MB140,0,3-seed,no_token,val,mae_min_mean,12.88,0.09,3,outputs/run026_mb140_fold0_no_token_seed*/,locked,**Paper headline no-token baseline** — supersedes 1-seed 13.55 from Run 007
+run026,MB140,1,42,no_token,val,mae_min,TBD,,1,outputs/run026_mb140_fold1_no_token_seed42/,running,
+run026,MB140,1,123,no_token,val,mae_min,TBD,,1,outputs/run026_mb140_fold1_no_token_seed123/,running,
+run026,MB140,1,777,no_token,val,mae_min,TBD,,1,outputs/run026_mb140_fold1_no_token_seed777/,running,
+run026,MB140,2,42,no_token,val,mae_min,TBD,,1,outputs/run026_mb140_fold2_no_token_seed42/,running,
+run026,MB140,2,123,no_token,val,mae_min,TBD,,1,outputs/run026_mb140_fold2_no_token_seed123/,running,
+run026,MB140,2,777,no_token,val,mae_min,TBD,,1,outputs/run026_mb140_fold2_no_token_seed777/,running,
+run026,MB140,3,42,no_token,val,mae_min,TBD,,1,outputs/run026_mb140_fold3_no_token_seed42/,running,
+run026,MB140,3,123,no_token,val,mae_min,TBD,,1,outputs/run026_mb140_fold3_no_token_seed123/,running,
+run026,MB140,3,777,no_token,val,mae_min,TBD,,1,outputs/run026_mb140_fold3_no_token_seed777/,running,
+run026,MB140,4,42,no_token,val,mae_min,TBD,,1,outputs/run026_mb140_fold4_no_token_seed42/,running,
+run026,MB140,4,123,no_token,val,mae_min,TBD,,1,outputs/run026_mb140_fold4_no_token_seed123/,running,
+run026,MB140,4,777,no_token,val,mae_min,TBD,,1,outputs/run026_mb140_fold4_no_token_seed777/,running,
+run027,MB140,1,42,teacher_forced_prefix,val,mae_min,TBD,,1,outputs/run027_mb140_fold1_causal_seed42/,queued,T1.2 5-fold causal
+run027,MB140,1,123,teacher_forced_prefix,val,mae_min,TBD,,1,outputs/run027_mb140_fold1_causal_seed123/,queued,
+run027,MB140,1,777,teacher_forced_prefix,val,mae_min,TBD,,1,outputs/run027_mb140_fold1_causal_seed777/,queued,
+run027,MB140,2,42,teacher_forced_prefix,val,mae_min,TBD,,1,outputs/run027_mb140_fold2_causal_seed42/,queued,
+run027,MB140,2,123,teacher_forced_prefix,val,mae_min,TBD,,1,outputs/run027_mb140_fold2_causal_seed123/,queued,
+run027,MB140,2,777,teacher_forced_prefix,val,mae_min,TBD,,1,outputs/run027_mb140_fold2_causal_seed777/,queued,
+run027,MB140,3,42,teacher_forced_prefix,val,mae_min,TBD,,1,outputs/run027_mb140_fold3_causal_seed42/,queued,
+run027,MB140,3,123,teacher_forced_prefix,val,mae_min,TBD,,1,outputs/run027_mb140_fold3_causal_seed123/,queued,
+run027,MB140,3,777,teacher_forced_prefix,val,mae_min,TBD,,1,outputs/run027_mb140_fold3_causal_seed777/,queued,
+run027,MB140,4,42,teacher_forced_prefix,val,mae_min,TBD,,1,outputs/run027_mb140_fold4_causal_seed42/,queued,
+run027,MB140,4,123,teacher_forced_prefix,val,mae_min,TBD,,1,outputs/run027_mb140_fold4_causal_seed123/,queued,
+run027,MB140,4,777,teacher_forced_prefix,val,mae_min,TBD,,1,outputs/run027_mb140_fold4_causal_seed777/,queued,
+run028,MB140_cross_center,Bern->Stras,42,teacher_forced_prefix,val,mae_min,20.20,,1,outputs/run028_mb140_cross_center_causal_seed42/,locked,Cross-center teacher-forced prefix
+run028,MB140_cross_center,Bern->Stras,123,teacher_forced_prefix,val,mae_min,20.20,,1,outputs/run028_mb140_cross_center_causal_seed123/,locked,
+run028,MB140_cross_center,Bern->Stras,777,teacher_forced_prefix,val,mae_min,20.17,,1,outputs/run028_mb140_cross_center_causal_seed777/,locked,
+run028,MB140_cross_center,Bern->Stras,3-seed,teacher_forced_prefix,val,mae_min_mean,20.19,0.02,3,outputs/run028_mb140_cross_center_causal_seed*/,locked,Cross-center teacher-forced FAILS — 2 min worse than no-token (18.26)
+historical,MB140_cross_center,Bern->Stras,42,oracle,val,mae_min,18.05,,1,outputs/run008_cross_center/,locked,Oracle cross-center
+historical,MB140_cross_center,Bern->Stras,42,no_token,val,mae_min,18.26,,1,outputs/run008_no_token/,locked,No-token cross-center
+historical,Cholec80,-,3-seed,oracle,val,mae_min_mean,4.49,0.14,3,outputs/run016_cholec80_with_token_seed*/,locked,3-seed Cholec80 oracle
+historical,Cholec80,-,3-seed,no_token,val,mae_min_mean,4.61,0.19,3,outputs/run017_cholec80_no_token_seed*/,locked,3-seed Cholec80 no-token
+historical,Cholec80,-,3-seed,oracle_transfer,test,mae_min_mean,4.337,0.209,3,outputs/run018_cholec80_transfer_from_mb140_seed*/,locked,Test set MB140->Cholec80 transfer
+historical,Cholec80,-,42-ensemble,ensemble+TTA+isotonic,test,mae_min,3.563,,1,outputs/run019_C/,locked,Headline secondary number — appendix only per Codex wording rules
+run033,MB140,0,42,strict_no_token,val,mae_min,13.17,,1,outputs/run033_strict_no_token_seed42/,locked,Strict prefix-only no-token (--target_position last)
+run033,MB140,0,123,strict_no_token,val,mae_min,13.10,,1,outputs/run033_strict_no_token_seed123/,locked,
+run033,MB140,0,777,strict_no_token,val,mae_min,12.83,,1,outputs/run033_strict_no_token_seed777/,locked,
+run033,MB140,0,3-seed,strict_no_token,val,mae_min_mean,13.03,0.18,3,outputs/run033_strict_no_token_seed*/,locked,§6.1 strict no-token headline
+run033,MB140,0,42,strict_oracle,val,mae_min,12.18,,1,outputs/run033_strict_oracle_seed42/,locked,
+run033,MB140,0,123,strict_oracle,val,mae_min,12.23,,1,outputs/run033_strict_oracle_seed123/,locked,
+run033,MB140,0,777,strict_oracle,val,mae_min,12.36,,1,outputs/run033_strict_oracle_seed777/,locked,
+run033,MB140,0,3-seed,strict_oracle,val,mae_min_mean,12.26,0.09,3,outputs/run033_strict_oracle_seed*/,locked,§6.1 strict oracle
+run033,MB140,0,42,strict_decoupled_oracle,val,mae_min,12.32,,1,outputs/run033_strict_decoupled_seed42/,locked,
+run033,MB140,0,123,strict_decoupled_oracle,val,mae_min,12.19,,1,outputs/run033_strict_decoupled_seed123/,locked,
+run033,MB140,0,777,strict_decoupled_oracle,val,mae_min,12.04,,1,outputs/run033_strict_decoupled_seed777/,locked,
+run033,MB140,0,3-seed,strict_decoupled_oracle,val,mae_min_mean,12.18,0.11,3,outputs/run033_strict_decoupled_seed*/,locked,§6.1 strict decoupled-oracle headline (best in paper)
+run034,MB140,cc,3-seed,strict_no_token,val,mae_min_mean,17.80,0.55,3,outputs/run034_strict_cc_no_token_seed*/,locked,§6.2 cross-center strict no-token
+run034,MB140,cc,3-seed,strict_oracle,val,mae_min_mean,17.71,0.23,3,outputs/run034_strict_cc_oracle_seed*/,locked,§6.2 cross-center strict oracle
+run034,MB140,cc,3-seed,strict_decoupled_oracle,val,mae_min_mean,17.33,0.15,3,outputs/run034_strict_cc_decoupled_seed*/,locked,§6.2 cross-center strict decoupled-oracle
+run037,MB140,0,3-seed,strict_shuffled_token,val,mae_min_mean,13.14,0.15,3,outputs/run037_strict_shuffled_seed*/,locked,§6.4 semantic control: cluster IDs randomly permuted
+run035,MB140,0,3-seed,run033_oracle_pixel_only_causal,val,mae_min_mean,11.62,0.20,3,outputs/run035_strict_pixel_only/run033_oracle_seed*.json,locked,§6.5 deployable matched-metric (per-video × video-weighted)
+run035,MB140,0,3-seed,run033_decoupled_pixel_only_causal,val,mae_min_mean,11.52,0.24,3,outputs/run035_strict_pixel_only/run033_decoupled_seed*.json,locked,§6.5 deployable best (decoupled checkpoint, pixel-only causal inference)
+run035,MB140,cc,3-seed,run034_oracle_pixel_only_causal,val,mae_min_mean,16.22,0.29,3,outputs/run035_strict_pixel_only/run034_oracle_seed*.json,locked,§6.5 cross-center deployable
+run035,MB140,cc,3-seed,run034_decoupled_pixel_only_causal,val,mae_min_mean,16.13,0.15,3,outputs/run035_strict_pixel_only/run034_decoupled_seed*.json,locked,§6.5 cross-center deployable best
+run044,MB140,0,3-seed,oracle_baseline_no_token_matched,val,mae_min_mean,11.70,0.11,3,outputs/run044_oracle_baseline_run035_metric/run033_no_token_seed*.json,locked,§6.5 oracle-inference no-token baseline under matched metric
+run044,MB140,0,3-seed,oracle_baseline_oracle_matched,val,mae_min_mean,11.10,0.05,3,outputs/run044_oracle_baseline_run035_metric/run033_oracle_seed*.json,locked,§6.5 oracle-inference oracle baseline under matched metric
+run044,MB140,0,3-seed,oracle_baseline_decoupled_matched,val,mae_min_mean,11.01,0.05,3,outputs/run044_oracle_baseline_run035_metric/run033_decoupled_seed*.json,locked,§6.5 oracle-inference decoupled upper bound
+run044,MB140,cc,3-seed,oracle_baseline_no_token_matched,val,mae_min_mean,16.35,0.43,3,outputs/run044_oracle_baseline_run035_metric/run034_no_token_seed*.json,locked,§6.5 cross-center oracle-inference no-token under matched metric
+run044,MB140,cc,3-seed,oracle_baseline_oracle_matched,val,mae_min_mean,16.21,0.31,3,outputs/run044_oracle_baseline_run035_metric/run034_oracle_seed*.json,locked,
+run044,MB140,cc,3-seed,oracle_baseline_decoupled_matched,val,mae_min_mean,15.95,0.13,3,outputs/run044_oracle_baseline_run035_metric/run034_decoupled_seed*.json,locked,§6.5 cross-center oracle-inference decoupled upper bound
+run045,MB140,0,3-seed,shuffled_baseline_matched,val,mae_min_mean,11.92,0.18,3,outputs/run045_shuffled_baseline_run035_metric/,locked,§6.5 shuffled-token re-evaluation under matched metric (worse than no-token under matched metric)
+run041,MB140,0,42,tau_sweep_0.01,val,mae_min,11.82,,1,outputs/run041_tau_sweep/run033_decoupled_seed42_tau0.01.json,locked,Appendix B temperature sweep
+run041,MB140,0,42,tau_sweep_0.05,val,mae_min,11.88,,1,outputs/run041_tau_sweep/run033_decoupled_seed42_tau0.05.json,locked,
+run041,MB140,0,42,tau_sweep_0.1,val,mae_min,11.82,,1,outputs/run041_tau_sweep/run033_decoupled_seed42_tau0.1.json,locked,
+run041,MB140,0,42,tau_sweep_0.5,val,mae_min,11.74,,1,outputs/run041_tau_sweep/run033_decoupled_seed42_tau0.5.json,locked,
+run041,MB140,0,42,tau_sweep_1.0,val,mae_min,11.74,,1,outputs/run041_tau_sweep/run033_decoupled_seed42_tau1.0.json,locked,τ=1.0 marginally best; spread across 5 τ values = 0.15 min, within noise
+run038,MB140,1-4,3-seed,strict_no_token_5fold,val,mae_min_mean,TBD,,12,outputs/run038_strict_no_token_fold*_seed*/,running,Phase E 5-fold extension folds 1-4 — see Appendix C.1
+run039,MB140,1-4,3-seed,strict_oracle_5fold,val,mae_min_mean,TBD,,12,outputs/run039_strict_oracle_fold*_seed*/,running,Phase E 5-fold extension folds 1-4 — see Appendix C.1
+run040,MB140,1-4,3-seed,strict_decoupled_5fold,val,mae_min_mean,10.495,0.928,12,outputs/run040_strict_decoupled_fold*_seed*/,locked,Phase E 5-fold extension folds 1-4 mean — see paper/phase_e_summary.md
+run046,Cholec80,-,42,strict_no_token,val,mae_min,4.336,,1,outputs/run046_strict_cholec80_no_token_seed42/,locked,§6.3 strict-protocol Cholec80 (1 seed) — confirms null result under strict
+run046,Cholec80,-,42,strict_oracle,val,mae_min,4.329,,1,outputs/run046_strict_cholec80_oracle_seed42/,locked,§6.3 strict-protocol Cholec80 oracle: Δ=0.007 vs no-token, statistical null
+run046b,Cholec80,-,42,strict_teacher_forced_prefix,val,mae_min,4.258,,1,outputs/run046_strict_cholec80_teacher_forced_prefix_seed42/,locked,§6.3 strict-protocol Cholec80 teacher_forced_prefix (1 seed); rectifies failed Run 046 condition by using train_causal.py with --prefix_cluster_map
+run042,MB140,0,42,longer_context_no_token,val,mae_min,12.463,,1,outputs/run042_longer_context_no_token_seed42/,locked,Longer-context fold-0 ablation (sequence_len=16 vs Run 033 sequence_len=8); 12.46 vs Run 033 no-token 13.03 (3-seed) → −0.57 min, passes pre-registered stop rule
+run042,MB140,0,42,longer_context_decoupled,val,mae_min,11.024,,1,outputs/run042_longer_context_decoupled_seed42/,locked,Longer-context fold-0 decoupled-oracle; 11.02 vs Run 033 decoupled 12.18 (3-seed) → −1.16 min; widens conditioning gain from −0.85 to −1.44 (1 seed)
+run040,MB140,4,3-seed,strict_decoupled,val,mae_min_mean,8.682,0.184,3,outputs/run040_strict_decoupled_fold4_seed*/,locked,Phase E fold-4 decoupled-oracle (3-seed mean); seeds: 8.479/8.743/8.824
+phase_e_5fold,MB140,0-4,3-seed-per-fold,strict_no_token,val,mae_min_mean,11.02,1.44,15,outputs/run038_*+run033/,locked,5-fold × 3-seed Phase E aggregation no-token (15 runs)
+phase_e_5fold,MB140,0-4,3-seed-per-fold,strict_oracle,val,mae_min_mean,10.84,1.30,15,outputs/run039_*+run033/,locked,5-fold × 3-seed Phase E aggregation oracle (15 runs); Δ vs no-token = −0.18 min
+phase_e_5fold,MB140,0-4,3-seed-per-fold,strict_decoupled,val,mae_min_mean,10.83,1.29,15,outputs/run040_*+run033/,locked,5-fold × 3-seed Phase E aggregation decoupled (15 runs); Δ vs no-token = −0.19 min

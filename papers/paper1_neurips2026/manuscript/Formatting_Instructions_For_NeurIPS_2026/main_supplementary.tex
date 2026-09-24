@@ -1,0 +1,141 @@
+\documentclass{article}
+
+% NeurIPS 2026 — Evaluations & Datasets track, supplementary material
+\usepackage[eandd]{neurips_2026}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{calc}
+\usepackage{graphicx}
+\graphicspath{{figures/}{../figures/}}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{ragged2e}
+\usepackage{tikz}
+\usetikzlibrary{positioning, decorations.pathreplacing, calc, fit}
+
+% Pandoc compatibility
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\real}[1]{#1}
+
+\title{Supplementary Material:\\
+When Does Workflow Conditioning Help Remaining Surgery Duration
+Prediction? A Variability-Scaling Study on MultiBypass140 and Cholec80}
+
+% Anonymous for double-blind review
+\author{%
+  Anonymous Author(s) \\
+  Affiliation(s) \\
+  Address(es) \\
+  \texttt{anonymous@anonymous.edu}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent
+This document is the supplementary material accompanying the main paper.
+It contains content cut from the 9-page main body for length, organized
+as Appendices A--H plus Appendix Z. The references list is also
+reproduced here for self-contained reading. No headline empirical claim
+from the main paper depends on material in this supplement; the
+appendices provide reproducibility details, ablations,
+statistical-significance tests, per-fold tables, extended discussion,
+and additional explanatory figures.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% All Appendices A through F + Z (auto-generated from review_manuscript.md
+% by paper/scripts/build_latex.py)
+\input{body_appendix}
+
+\clearpage
+\section{Appendix H --- Explanatory Figures Generated During
+Revision}\label{appendix-h-explanatory-figures-generated-during-revision}
+
+This appendix collects the explanatory figures generated during
+revision. These diagrams are intended to make the architecture and data
+flow easier to understand; they are explanatory aids rather than
+headline empirical results.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.9\linewidth]{vit_freeze_diagram.png}
+\caption{ViT-B/16 frame encoder initialized from ImageNet-21k. The
+lower 6 transformer blocks are frozen and the upper 6 are fine-tuned;
+the final [CLS] output is used as the 768-dimensional frame feature.}
+\label{fig:app-vit-freeze}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.8\linewidth]{transformer_block_diagram.png}
+\caption{One transformer block in the ViT encoder. Self-attention lets
+each image patch interact with other patches across the frame, and the
+feed-forward MLP refines the representation.}
+\label{fig:app-transformer-block}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth]{clip_to_tensor_pipeline.png}
+\caption{From a full surgery video, we sample an 8-frame clip. Each
+frame is encoded independently by ViT-B/16, producing one
+768-dimensional feature per frame. Stacking these features yields an
+\(8 \times 768\) tensor, which is then combined with the workflow token
+and passed to the temporal head for clip-level prediction.}
+\label{fig:app-clip-pipeline}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.7\linewidth]{workflow_token_diagram.png}
+\caption{Workflow-token construction. The phase sequence is mapped to a
+workflow cluster, which is then converted into a learned embedding
+vector used as the workflow token.}
+\label{fig:app-workflow-token}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.85\linewidth]{workflow_token_oracle_vs_causal.png}
+\caption{Oracle versus causal-at-inference workflow tokens. In the
+oracle setting, the model receives the embedding for a single known
+cluster. In the causal-at-inference setting, it uses a probability
+distribution over clusters derived from the observed surgical prefix and
+forms a weighted average of cluster embeddings.}
+\label{fig:app-workflow-token-oracle-causal}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth]{hta_temporal_head_diagram.png}
+\caption{HTA-inspired temporal head. The input sequence contains 8
+frame-level features and 1 workflow token. Each temporal block combines
+a local-attention branch over part of the sequence with a
+global-attention branch over the full sequence. The output at position 0
+is used as the clip-level representation \(\mathbf{h}_t\), which feeds
+the RSD, phase, and deviation heads.}
+\label{fig:app-hta-head}
+\end{figure}
+
+\clearpage
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

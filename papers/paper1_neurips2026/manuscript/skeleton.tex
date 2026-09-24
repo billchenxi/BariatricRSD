@@ -1,0 +1,150 @@
+% BariatricRSD — NeurIPS 2026 skeleton
+% Drop this content into the official NeurIPS 2026 LaTeX template (neurips_2026.sty).
+% Download template: https://neurips.cc/Conferences/2026
+%
+% \documentclass{article}
+% \usepackage[final]{neurips_2026}    % use [preprint] while writing, remove for camera-ready
+% \usepackage{amsmath,amsfonts,booktabs,graphicx,hyperref}
+
+\title{Structured Temporal Prediction under Workflow Variability:\\
+Data-Driven Phase-Order Conditioning for Surgical Video}
+
+\author{%
+  % NeurIPS anonymous during review; fill for camera-ready.
+  Anonymous Author(s)\\
+  \texttt{anon@example.com}\\
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  Long-horizon prediction on surgical video—remaining surgery duration (RSD), phase recognition,
+  and intraoperative deviation detection—is hard because different surgeons execute the same
+  procedure in materially different orders. Most existing methods apply generic temporal attention
+  and treat every surgery as interchangeable, leaving cross-surgeon and cross-center variability
+  unexploited. We propose a simple addition to a standard video Transformer: a learnable
+  phase-order conditioning token, computed offline from the procedural signature of each training
+  video and prepended to the encoder sequence as a conditioning analog of a \texttt{[CLS]} token.
+  On MultiBypass140 (140 Roux-en-Y gastric bypass videos, 2 centers), this conditioning—when
+  derived from a data-driven k-means clustering of phase-transition bigrams—reduces within-center
+  RSD mean absolute error from \textbf{13.55 to 12.27 min} and halves epoch-level variance from
+  0.94 to 0.49~min. A naive heuristic clustering, in contrast, hurts the model. Cross-center
+  transfer remains substantially degraded (18.05~min, +5.78~min gap), quantifying the
+  workflow-variability problem the method is designed for. The useful contribution is not a new
+  architectural block but the general principle that structured temporal prediction under
+  heterogeneous workflows benefits from explicit, data-driven workflow conditioning; we provide
+  matched-compute ablations supporting this claim.
+\end{abstract}
+
+\section{Introduction}
+% ~1 page. Problem setup, workflow variability as core challenge, three contributions.
+% Content: paste from paper/draft.md §1.
+
+\section{Related Work}
+% ~0.75 page. Surgical RSD, MultiBypass140, surgical VLP, conditional tokens, multi-task.
+% Content: §2 of draft.md.
+
+\section{Method}
+\label{sec:method}
+% ~1.5 pages. Include Figure 1 (architecture from notebooks/methods_comparison.ipynb Fig 5).
+
+\subsection{Problem formulation}
+% Define inputs, three outputs (RSD, deviation, phase), normalization.
+
+\subsection{Architecture}
+\begin{figure}[t]
+  \centering
+  % \includegraphics[width=\linewidth]{figs/architecture.pdf}
+  \caption{BariatricRSD architecture. The phase-order conditioning token (purple) is the novel
+    component; all other blocks are adapted from prior work.}
+  \label{fig:architecture}
+\end{figure}
+
+\subsection{Phase-order clustering}
+% Describe: phase bigrams -> TF-IDF -> PCA -> kmeans. Emphasize data-driven vs. heuristic.
+
+\subsection{Multi-task loss}
+\begin{equation}
+  \mathcal{L}_{\text{total}} = \sum_{k \in \{\text{rsd}, \text{dev}, \text{phase}\}}
+    \exp(-\sigma_k)\,\mathcal{L}_k + \sigma_k,
+\end{equation}
+% with log-variance $\sigma_k$ learned per task (Kendall et al. 2018).
+
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Dataset and splits}
+% MultiBypass140 overview. 5-fold CV, fold 0. Cross-center split: Bern (train) -> Stras (val).
+
+\subsection{Implementation details}
+% Hyperparameters. ViT-B/16, HTA (6 blocks), batch 64, AdamW 1e-4, cosine 15ep, GH200.
+
+\subsection{Main result: H1 --- phase-order conditioning}
+\label{sec:h1}
+\begin{table}[t]
+  \centering
+  \caption{Within-center H1 ablation (MultiBypass140 fold 0, matched compute, 15 epochs each).
+    Phase-order conditioning with data-driven k-means clusters improves every metric.}
+  \label{tab:h1}
+  \begin{tabular}{lrrr}
+    \toprule
+    Configuration & Min val MAE (min) & Mean val MAE & Std (epochs) \\
+    \midrule
+    Without phase-order & 13.55 & 14.33 & 0.94 \\
+    With kmeans phase-order (\textbf{ours}) & \textbf{12.27} & \textbf{12.84} & \textbf{0.49} \\
+    $\Delta$ (ours $-$ ablation) & $-1.28$ & $-1.49$ & $-0.45$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{H2 --- Multi-task does not hurt RSD}
+% Table with Run 001 vs Run 004.
+
+\subsection{Cross-center generalization}
+\begin{table}[t]
+  \centering
+  \caption{Cross-center transfer. A $\sim$6-minute MAE gap quantifies workflow variability
+    between Bern and Strasbourg cohorts.}
+  \label{tab:crosscenter}
+  \begin{tabular}{lrr}
+    \toprule
+    Metric & Within-center & Cross-center (Bern$\to$Stras) \\
+    \midrule
+    Min val MAE (min) & 12.27 & \textbf{18.05} \\
+    Mean val MAE     & 12.84 & 18.94 \\
+    Pearson $r$      & 0.80 & 0.69 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Clustering quality matters}
+% Narrative around Run 001 (heuristic, worse) vs Run 006 (kmeans, best). Negative control.
+
+\subsection{Three-seed replication}
+% TODO -- pending.
+
+\section{Discussion and Limitations}
+% §5 of draft.md. Honest about what we are not claiming.
+
+\section{Conclusion}
+% §6 of draft.md.
+
+\section*{Acknowledgments}
+% Funding, compute credits, dataset contributors.
+
+\small
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\newpage
+\appendix
+
+\section{Full hyperparameters per run}
+\section{Clustering sensitivity (k = 4, 6, 8)}
+\section{Per-epoch validation curves for all runs}
+\section{Qualitative case studies}
+\section{NeurIPS Paper Checklist}
+% Fill per https://neurips.cc/public/guides/PaperChecklist
+
+\end{document}

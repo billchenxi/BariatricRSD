@@ -1,0 +1,102 @@
+{
+  "run033_decoupled": {
+    "n_seeds": 3,
+    "mae_minutes_mean_mean": 11.523373359696892,
+    "mae_minutes_mean_std": 0.23909004993328273,
+    "rows": [
+      {
+        "seed": "123",
+        "mae_norm_mean": 0.11870490763915906,
+        "mae_minutes_mean": 11.643049161439844,
+        "n_videos": 20
+      },
+      {
+        "seed": "42",
+        "mae_norm_mean": 0.1180316436559972,
+        "mae_minutes_mean": 11.737404688246206,
+        "n_videos": 20
+      },
+      {
+        "seed": "777",
+        "mae_norm_mean": 0.11444825918332155,
+        "mae_minutes_mean": 11.189666229404631,
+        "n_videos": 20
+      }
+    ]
+  },
+  "run033_oracle": {
+    "n_seeds": 3,
+    "mae_minutes_mean_mean": 11.624754282421897,
+    "mae_minutes_mean_std": 0.19822351739201613,
+    "rows": [
+      {
+        "seed": "123",
+        "mae_norm_mean": 0.12032704434566344,
+        "mae_minutes_mean": 11.779694207020627,
+        "n_videos": 20
+      },
+      {
+        "seed": "42",
+        "mae_norm_mean": 0.1149095284907287,
+        "mae_minutes_mean": 11.344962647791316,
+        "n_videos": 20
+      },
+      {
+        "seed": "777",
+        "mae_norm_mean": 0.11727449677643993,
+        "mae_minutes_mean": 11.749605992453743,
+        "n_videos": 20
+      }
+    ]
+  },
+  "run034_decoupled": {
+    "n_seeds": 3,
+    "mae_minutes_mean_mean": 16.12845347487816,
+    "mae_minutes_mean_std": 0.14869701683921235,
+    "rows": [
+      {
+        "seed": "123",
+        "mae_norm_mean": 0.145783853006058,
+        "mae_minutes_mean": 16.00139994044626,
+        "n_videos": 70
+      },
+      {
+        "seed": "42",
+        "mae_norm_mean": 0.14864980460017105,
+        "mae_minutes_mean": 16.337098310461194,
+        "n_videos": 70
+      },
+      {
+        "seed": "777",
+        "mae_norm_mean": 0.14587171836258178,
+        "mae_minutes_mean": 16.046862173727035,
+        "n_videos": 70
+      }
+    ]
+  },
+  "run034_oracle": {
+    "n_seeds": 3,
+    "mae_minutes_mean_mean": 16.22336945441039,
+    "mae_minutes_mean_std": 0.29326150879388646,
+    "rows": [
+      {
+        "seed": "123",
+        "mae_norm_mean": 0.14933627738198127,
+        "mae_minutes_mean": 16.42750700128948,
+        "n_videos": 70
+      },
+      {
+        "seed": "42",
+        "mae_norm_mean": 0.14984264224901583,
+        "mae_minutes_mean": 16.433949629914768,
+        "n_videos": 70
+      },
+      {
+        "seed": "777",
+        "mae_norm_mean": 0.14217715816020937,
+        "mae_minutes_mean": 15.80865173202692,
+        "n_videos": 70
+      }
+    ]
+  }
+}

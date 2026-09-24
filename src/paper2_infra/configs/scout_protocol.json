@@ -1,0 +1,35 @@
+{
+  "protocol_version": "2026-09-17-draft-1",
+  "status": "draft_not_training_ready",
+  "backbone_slots": ["vit_b16_in21k", "videomae_large", "surgical_encoder_pending_audit"],
+  "settings": [
+    "mb140_fold0", "mb140_fold1", "mb140_fold2", "mb140_fold3",
+    "mb140_fold4", "mb140_cross_center", "cholec80"
+  ],
+  "conditions": ["no_token", "predicted_phase_R1", "predicted_phase_R3"],
+  "seeds": [42],
+  "expected_multitask_head_runs": 63,
+  "tasks": ["remaining_duration", "time_to_next_transition"],
+  "primary_metric": "video_macro_mae_minutes",
+  "uncertainty_unit": "operation",
+  "inference_inputs": ["frames_at_or_before_prediction_time", "elapsed_time"],
+  "forbidden_deployable_inputs": [
+    "ground_truth_phase", "whole_case_cluster", "total_duration",
+    "future_frames", "smoothed_hmm_posterior"
+  ],
+  "fit_scope": "training_cases_only_for_encoder_adaptation_phase_predictor_and_workflow_model",
+  "selection_scope": "validation_only_never_test",
+  "r3_soft_evidence": "emission_dot_predicted_phase_probability",
+  "stream_reset": "each_operation",
+  "unresolved_before_freeze": [
+    "audit split membership and distinct validation/test roles",
+    "pin checkpoint content hashes and preprocessing for all encoders",
+    "verify surgical encoder license weights and loader",
+    "measure target hardware extraction and training throughput",
+    "integrate predicted phase R1 and R3 with cached-feature training",
+    "specify training phase predictions out-of-fold or in-sample with matching ablation",
+    "freeze optimizer stopping rule time sampling and task loss weights",
+    "specify final-phase censoring policy for next transition",
+    "audit foundation-model pretraining overlap"
+  ]
+}
