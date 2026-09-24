@@ -5,7 +5,7 @@ from seven overlapping memos: `NEXT_PAPER_BRIEF.md`, `NEXT_PAPER_PLAN.md`,
 `NEXT_PUBLICATIONS.md`, `PAPER_2A_REVIEWER_HARDENING.md`,
 `DIRECTION_AND_FUNDING_2027.md`, `archive/NEXT_PAPER_PHYSICAL_AI.md`,
 `archive/NEXT_PAPER_REFINEMENTS.md`, and `grants/cdmrp_fy27_path.md`. The
-originals are in git history at commit `58c99bc` if anything here needs to
+originals are in git history at commit `1511e55` if anything here needs to
 be checked against its source.
 
 Still separate, deliberately: `phase_0/` (evidence, cited by the README),
@@ -1159,7 +1159,7 @@ Consolidated September 17, 2026. Source memos and their research dates:
 (2026-05-20), `NEXT_PAPER_BRIEF.md` (2026-05-21), `NEXT_PUBLICATIONS.md`,
 `PAPER_2A_REVIEWER_HARDENING.md` (2026-06-04), `cdmrp_fy27_path.md`
 (2026-09-16), `NEXT_PAPER_PLAN.md` §8 and `DIRECTION_AND_FUNDING_2027.md`
-(both 2026-09-17). Originals at git commit `58c99bc`.
+(both 2026-09-17). Originals at git commit `1511e55`.
 
 Primary sources linked inline. Web search was used for discovery; grant
 aggregators and company trackers were **not** treated as authoritative and

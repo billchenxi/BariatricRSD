@@ -3,7 +3,7 @@
 > **Note (2026-09-17):** references below to `NEXT_PAPER_PLAN.md`,
 > `NEXT_PAPER_BRIEF.md`, or `PAPER_2A_REVIEWER_HARDENING.md` now resolve to
 > [`docs/STRATEGY.md`](../../../plans/STRATEGY.md), which merged them. Originals are at
-> git commit `58c99bc`.
+> git commit `1511e55`.
 
 *Status: analysis complete, reproducible from committed artifacts.
 Produced by `paper2_infra/evaluation/fold_stability.py` on
