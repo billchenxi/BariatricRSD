@@ -91,3 +91,7 @@ us-east-3-*.txt
 # GitHub's limit, and byte-identical to the .gz beside it (verified 2026-09-24).
 papers/paper1_neurips2026/reproducibility/labels/*.json
 !papers/paper1_neurips2026/reproducibility/labels/*.json.gz
+
+# Local agent/editor configuration — contains absolute paths, SSH hosts and
+# infrastructure detail; never belongs in a public repository.
+/.claude/
